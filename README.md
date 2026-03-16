@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Animated header -->
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0D1117,50:00D9FF,100:0D1117&height=220&section=header&text=Ronil%20Basu&fontSize=50&fontColor=FFFFFF&fontAlignY=35&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=00D9FF&descAlignY=55&animation=fadeIn&stroke=00D9FF" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=cylinder&color=gradient&customColorList=12,14,16,18,20&height=230&section=header&text=Ronil%20Basu&fontSize=55&fontColor=FFFFFF&fontAlignY=40&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=E0E0E0&descAlignY=62&animation=scaleIn" width="100%" />
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1)
@@ -31,10 +31,12 @@
 
 Calibrated probability models + multi-book scanning to find +EV player prop bets across BetMGM, DraftKings, and FanDuel.
 
-- **Math** — Normal CDF · Poisson · temperature-scaled calibration
-- **Tracking** — CLV analysis · paper trading journal · settlement
-- **Interface** — 7-tab Alpine.js dashboard · CLI · HTTP API
-- **LLM** — Ollama primary · Claude API fallback
+<table><tbody>
+<tr><td><b>Math</b></td><td>Normal CDF · Poisson · temperature-scaled calibration</td></tr>
+<tr><td><b>Tracking</b></td><td>CLV analysis · paper trading journal · settlement</td></tr>
+<tr><td><b>Interface</b></td><td>7-tab Alpine.js dashboard · CLI · HTTP API</td></tr>
+<tr><td><b>LLM</b></td><td>Ollama primary · Claude API fallback</td></tr>
+</tbody></table>
 
 <div align="center">
 
@@ -55,10 +57,12 @@ Calibrated probability models + multi-book scanning to find +EV player prop bets
 
 Automated EDGAR monitoring with sentence-level diffing across 10-K/10-Q filings, 9 red flag patterns, and two-stage LLM severity scoring.
 
-- **Coverage** — Any SEC-reporting company · 5-year backfill
-- **Analysis** — Sentence-level structural diffing · 9 red flags
-- **Scoring** — Deterministic gate → LLM severity assessment
-- **Reliability** — Crash-safe pipeline · auto-resume · 123 tests
+<table><tbody>
+<tr><td><b>Coverage</b></td><td>Any SEC-reporting company · 5-year backfill</td></tr>
+<tr><td><b>Analysis</b></td><td>Sentence-level structural diffing · 9 red flags</td></tr>
+<tr><td><b>Scoring</b></td><td>Deterministic gate → LLM severity assessment</td></tr>
+<tr><td><b>Reliability</b></td><td>Crash-safe pipeline · auto-resume · 123 tests</td></tr>
+</tbody></table>
 
 <div align="center">
 
