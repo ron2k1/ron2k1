@@ -11,7 +11,7 @@
 
 <br/>
 
-> **`CS @ Rutgers University, New Brunswick`** — I build data-driven systems across finance, ML, and infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
+> **`Economics | Statistics | Data Science | @ Rutgers University, New Brunswick`** — I build data-driven systems across finance, ML, and infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
 
 <br/>
 
