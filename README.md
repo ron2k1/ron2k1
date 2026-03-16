@@ -1,9 +1,7 @@
 <div align="center">
 
 <!-- Animated header -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=4000&pause=1000&color=00D9FF&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=100&lines=Ronil+Basu;Building+systems+that+turn+data+into+edge." alt="Typing SVG" />
-
-<br/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D1117,50:161B22,100:00D9FF&height=220&section=header&text=Ronil%20Basu&fontSize=50&fontColor=FFFFFF&fontAlignY=35&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=00D9FF&descAlignY=55&animation=fadeIn" width="100%" />
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1)
@@ -11,147 +9,133 @@
 
 </div>
 
-<!-- Animated divider -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+<br/>
 
-## About Me
+> **`CS @ Rutgers University, New Brunswick`** — I build data-driven systems across finance, ML, and infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
+
+<br/>
+
+## What I'm Working On
+
+<table>
+<tr>
+<td width="50%" valign="top">
 
 <div align="center">
 
-![Rutgers](https://img.shields.io/badge/Rutgers_University-CC0033?style=for-the-badge&logo=rutgers&logoColor=white)
-![Focus](https://img.shields.io/badge/Finance_·_ML/AI_·_Data_Engineering-0D1117?style=for-the-badge)
+**NBA Prop EV Analyzer**
+
+*Sports analytics engine*
 
 </div>
 
-<table>
-<tr>
-<td width="50%" valign="top">
+Calibrated probability models + multi-book scanning to find +EV player prop bets across BetMGM, DraftKings, and FanDuel.
 
-#### What I Build
-![EV Engine](https://img.shields.io/badge/▸_EV_Engine-Calibrated_probability_models_for_sports_betting-00D9FF?style=flat-square)
-<br/>
-![RedLine](https://img.shields.io/badge/▸_RedLine-SEC_filing_risk_detection_with_local_LLM-FF4444?style=flat-square)
-<br/>
-![FastRust](https://img.shields.io/badge/▸_FastRust-FastAPI--style_Rust_web_framework_on_Hyper-DEA584?style=flat-square)
+| | |
+|---|---|
+| **Math** | Normal CDF · Poisson · temperature-scaled calibration |
+| **Tracking** | CLV analysis · paper trading journal · settlement |
+| **Interface** | 7-tab Alpine.js dashboard · CLI · HTTP API |
+| **LLM** | Ollama primary · Claude API fallback |
+
+<div align="center">
+
+[![Repo](https://img.shields.io/badge/View_Repo-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/ron2k1/nba-propEVanalyzer)
+
+</div>
 
 </td>
 <td width="50%" valign="top">
 
-#### How I Think
-![Approach](https://img.shields.io/badge/▸-Statistical_models_→_real--money_signals-00D9FF?style=flat-square)
-<br/>
-![Approach](https://img.shields.io/badge/▸-Verify_before_you_ship-00D9FF?style=flat-square)
-<br/>
-![Approach](https://img.shields.io/badge/▸-Data_first,_intuition_second-00D9FF?style=flat-square)
+<div align="center">
+
+**RedLine**
+
+*SEC filing risk intelligence*
+
+</div>
+
+Automated EDGAR monitoring with sentence-level diffing across 10-K/10-Q filings, 9 red flag patterns, and two-stage LLM severity scoring.
+
+| | |
+|---|---|
+| **Coverage** | Any SEC-reporting company · 5-year backfill |
+| **Analysis** | Sentence-level structural diffing · 9 red flags |
+| **Scoring** | Deterministic gate → LLM severity assessment |
+| **Reliability** | Crash-safe pipeline · auto-resume · 123 tests |
+
+<div align="center">
+
+[![Repo](https://img.shields.io/badge/View_Repo-FF4444?style=for-the-badge&logo=github&logoColor=FFFFFF)](https://github.com/ron2k1/RedLine)
+
+</div>
 
 </td>
 </tr>
 </table>
 
-<!-- Animated divider -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+<div align="center">
 
-## Featured Projects
+---
 
-<table>
-<tr>
-<td width="50%" valign="top">
+**FastRust** · *Collaborator*
 
-### <img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="30"> NBA Prop EV Analyzer
-**Quantitative sports analytics engine**
+*FastAPI-style DX with Rust-level performance on Hyper*
 
-Calibrated probability models + multi-book scanning to identify +EV player prop opportunities across BetMGM, DraftKings, and FanDuel.
+</div>
 
-- Temperature-scaled calibration per stat
-- Normal CDF / Poisson distribution modeling
-- Closing line value (CLV) tracking
-- Paper trading journal with settlement validation
-- 7-tab Alpine.js dashboard + CLI + HTTP API
-- LLM reasoning layer (Ollama / Claude fallback)
+A Rust web framework for clean, ergonomic endpoints without sacrificing control over the Hyper runtime. Trie-based routing, typed extractors, proc macro decorators, middleware (CORS, auth, logging), and auto-generated OpenAPI docs.
 
-[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/nba-propEVanalyzer)
-
-</td>
-<td width="50%" valign="top">
-
-### <img src="https://media.giphy.com/media/3oKIPa2TdahY8LAAxy/giphy.gif" width="30"> RedLine
-**SEC filing risk intelligence platform**
-
-Automated EDGAR monitoring with sentence-level diffing across 10-K/10-Q filings, 9 financial red flag patterns, and LLM-powered severity scoring.
-
-- Universal coverage — any SEC-reporting company
-- Sentence-level structural diffing (not word-level)
-- Two-stage scoring: deterministic gate + LLM analysis
-- 5-year historical backfill on first run
-- Crash-safe pipeline with auto-resume
-- Dark-themed Flask dashboard with drill-down
-- 123 tests (pytest)
-
-[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/RedLine)
-
-</td>
-</tr>
-<tr>
-<td colspan="2" valign="top">
-
-### <img src="https://media.giphy.com/media/ln7z2eWriiQAllfVcn/giphy.gif" width="30"> FastRust — *Collaborator*
-**FastAPI-style DX with Rust-level performance on Hyper**
-
-A Rust web framework that gives you clean, ergonomic endpoint code without sacrificing control over the underlying Hyper runtime. MVP stage — actively developed.
-
-- Trie-based router with typed extractors (Path, Query, Json, State)
-- Proc macro route decorators (`#[get]`, `#[post]`, `#[put]`, `#[delete]`, etc.)
-- Middleware system with CORS, Bearer auth, and logging
-- Auto-generated `/openapi.json` + `/docs` endpoints
-- Benchmark harness for routing & dispatch performance
+<div align="center">
 
 Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https://github.com/chadha19)
 
-[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Purabhh/FastRust)
+[![Repo](https://img.shields.io/badge/View_Repo-DEA584?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/Purabhh/FastRust)
 
-</td>
-</tr>
-</table>
+---
 
-<!-- Animated divider -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+</div>
+
+<br/>
 
 ## Tech Stack
 
 <div align="center">
 
-#### Languages
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
+**`Languages`**
 
-#### ML / Data
-![XGBoost](https://img.shields.io/badge/XGBoost-189FDD?style=for-the-badge&logo=xgboost&logoColor=white)
-![scikit--learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
 
-#### Web / Backend
-![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=black)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![Hyper](https://img.shields.io/badge/Hyper_(Rust)-000000?style=for-the-badge&logo=rust&logoColor=white)
+**`ML / Data`**
 
-#### Infrastructure / Tools
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white)
-![Claude](https://img.shields.io/badge/Claude_API-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-189FDD?style=flat-square&logo=xgboost&logoColor=white)
+![scikit--learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+
+**`Web / Backend`**
+
+![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat-square&logo=alpinedotjs&logoColor=black)
+![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
+![Hyper](https://img.shields.io/badge/Hyper-000000?style=flat-square&logo=rust&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+
+**`Infrastructure`**
+
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
+![Claude](https://img.shields.io/badge/Claude_API-D97757?style=flat-square&logo=anthropic&logoColor=white)
 
 </div>
 
-<!-- Animated divider -->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
+<br/>
 
 <!-- Contribution snake -->
 <div align="center">
@@ -164,8 +148,4 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 
 </div>
 
-<br/>
-
-<div align="center">
-<i>"The edge is narrow and specific. Find it, verify it, exploit it."</i>
-</div>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00D9FF,50:161B22,100:0D1117&height=120&section=footer" width="100%" />
