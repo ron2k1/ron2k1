@@ -19,7 +19,7 @@
 <div align="center">
 
 ![Rutgers](https://img.shields.io/badge/Rutgers_University-CC0033?style=for-the-badge&logo=rutgers&logoColor=white)
-![Focus](https://img.shields.io/badge/Quant_Finance_·_ML/AI_·_Data_Engineering-0D1117?style=for-the-badge)
+![Focus](https://img.shields.io/badge/Finance_·_ML/AI_·_Data_Engineering-0D1117?style=for-the-badge)
 
 </div>
 
