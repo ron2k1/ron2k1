@@ -16,21 +16,37 @@
 
 ## About Me
 
-```python
-class RonilBasu:
-    def __init__(self):
-        self.university = "Rutgers University, New Brunswick"
-        self.focus      = ["Quantitative Finance", "ML/AI Systems", "Data Engineering"]
-        self.building   = "Systems where statistical models produce real-money signals"
-        self.stack      = ["Python", "Rust", "Java", "JavaScript"]
+<div align="center">
 
-    def current_work(self):
-        return {
-            "nba_ev_engine":  "Prop betting EV engine with calibrated probability models",
-            "redline":        "SEC filing change detection with local LLM risk scoring",
-            "fastrust":       "FastAPI-style Rust web framework on Hyper",
-        }
-```
+![Rutgers](https://img.shields.io/badge/Rutgers_University-CC0033?style=for-the-badge&logo=rutgers&logoColor=white)
+![Focus](https://img.shields.io/badge/Quant_Finance_·_ML/AI_·_Data_Engineering-0D1117?style=for-the-badge)
+
+</div>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+#### What I Build
+![EV Engine](https://img.shields.io/badge/▸_EV_Engine-Calibrated_probability_models_for_sports_betting-00D9FF?style=flat-square)
+<br/>
+![RedLine](https://img.shields.io/badge/▸_RedLine-SEC_filing_risk_detection_with_local_LLM-FF4444?style=flat-square)
+<br/>
+![FastRust](https://img.shields.io/badge/▸_FastRust-FastAPI--style_Rust_web_framework_on_Hyper-DEA584?style=flat-square)
+
+</td>
+<td width="50%" valign="top">
+
+#### How I Think
+![Approach](https://img.shields.io/badge/▸-Statistical_models_→_real--money_signals-00D9FF?style=flat-square)
+<br/>
+![Approach](https://img.shields.io/badge/▸-Verify_before_you_ship-00D9FF?style=flat-square)
+<br/>
+![Approach](https://img.shields.io/badge/▸-Data_first,_intuition_second-00D9FF?style=flat-square)
+
+</td>
+</tr>
+</table>
 
 <!-- Animated divider -->
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
@@ -169,4 +185,3 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 <div align="center">
 <i>"The edge is narrow and specific. Find it, verify it, exploit it."</i>
 </div>
-
