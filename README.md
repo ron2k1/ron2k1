@@ -17,6 +17,32 @@
 
 ## What I'm Working On
 
+<div align="center">
+
+### ClawWorld
+
+**A spatial frontend for multi-agent orchestration — walk up to an AI agent, talk to it, watch agents delegate to each other in real time.**
+
+</div>
+
+Built on the [OpenClaw](https://github.com/ron2k1/OpenClaw) gateway, ClawWorld renders your agent roster as characters in a tile-based world instead of a chat sidebar. Each agent has its own persona (`SOUL.md`), routes to its own LLM provider (Anthropic, xAI, Ollama), and can consult peer agents mid-conversation via `ask_agent()` delegation.
+
+<table><tbody>
+<tr><td><b>Interface</b></td><td>React + Vite + HTML5 Canvas · tile-based spatial UI</td></tr>
+<tr><td><b>Backend</b></td><td>FastAPI gateway · WebSocket JSON-RPC 2.0 · provider-agnostic routing</td></tr>
+<tr><td><b>Agents</b></td><td>Per-agent identity isolation · hot-swappable roster · multi-agent delegation</td></tr>
+<tr><td><b>Dev</b></td><td>Mock mode (no API keys) · <code>clawworld dev</code> one-liner</td></tr>
+</tbody></table>
+
+<div align="center">
+
+[![Repo](https://img.shields.io/badge/ClawWorld-8B5CF6?style=for-the-badge&logo=github&logoColor=FFFFFF)](https://github.com/ron2k1/ClawWorld)
+[![OpenClaw Gateway](https://img.shields.io/badge/OpenClaw_Gateway-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/OpenClaw)
+
+---
+
+</div>
+
 <table>
 <tr>
 <td width="50%" valign="top">
@@ -107,6 +133,7 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
 
@@ -120,7 +147,9 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 
 **`Web / Backend`**
 
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat-square&logo=alpinedotjs&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
 ![Hyper](https://img.shields.io/badge/Hyper-000000?style=flat-square&logo=rust&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
