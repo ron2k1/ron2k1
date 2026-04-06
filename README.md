@@ -1,6 +1,5 @@
 <div align="center">
 
-<!-- Animated header -->
 <img src="https://capsule-render.vercel.app/api?type=cylinder&color=gradient&customColorList=12,14,16,18,20&height=230&section=header&text=Ronil%20Basu&fontSize=55&fontColor=FFFFFF&fontAlignY=40&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=E0E0E0&descAlignY=62&animation=scaleIn" width="100%" />
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
@@ -11,7 +10,7 @@
 
 <br/>
 
-> **`Economics | Statistics | Data Science | @ Rutgers University, New Brunswick`** — I build data-driven systems across finance, ML, and infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
+> **`Economics | Statistics | Data Science | @ Rutgers University, New Brunswick`** — I build data-driven systems across quant finance, ML, and multi-agent infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
 
 <br/>
 
@@ -19,25 +18,25 @@
 
 <div align="center">
 
-### ClawWorld
+### FullEV-PropAnalyzer + FastRust
 
-**A spatial frontend for multi-agent orchestration — walk up to an AI agent, talk to it, watch agents delegate to each other in real time.**
+**Production-grade NBA player-prop EV engine — paper trading phase, approaching GO-LIVE.**
 
 </div>
 
-Built on the [OpenClaw](https://github.com/ron2k1/OpenClaw) gateway, ClawWorld renders your agent roster as characters in a tile-based world instead of a chat sidebar. Each agent has its own persona (`SOUL.md`), routes to its own LLM provider (Anthropic, xAI, Ollama), and can consult peer agents mid-conversation via `ask_agent()` delegation.
+End-to-end local prop EV engine: projection modeling, multi-book line sweep, probability calibration with isotonic regression, 8-layer signal gating, historical backtesting against 9M+ odds snapshots, and CLV-tracked paper trading. `FastRust` is a companion Rust compute engine via PyO3 that handles the hot-path EV math with GIL-releasing batch parallelism, targeting ~150x speedup on full-season backtests.
 
 <table><tbody>
-<tr><td><b>Interface</b></td><td>React + Vite + HTML5 Canvas · tile-based spatial UI</td></tr>
-<tr><td><b>Backend</b></td><td>FastAPI gateway · WebSocket JSON-RPC 2.0 · provider-agnostic routing</td></tr>
-<tr><td><b>Agents</b></td><td>Per-agent identity isolation · hot-swappable roster · multi-agent delegation</td></tr>
-<tr><td><b>Dev</b></td><td>Mock mode (no API keys) · <code>clawworld dev</code> one-liner</td></tr>
+<tr><td><b>Calibration</b></td><td>Temperature scaling + isotonic regression, per-stat per-side, walk-forward isolation</td></tr>
+<tr><td><b>Signal gate</b></td><td>8+ independent veto conditions — edge floor, CLV gate, Pinnacle direction, injury-return detection</td></tr>
+<tr><td><b>Data</b></td><td>877K closing lines · 9.1M NBA snapshots · 3 full seasons</td></tr>
+<tr><td><b>Rust layer</b></td><td>PyO3 0.22 · rayon batch API · drop-in replacement for Python compute_ev()</td></tr>
 </tbody></table>
 
 <div align="center">
 
-[![Repo](https://img.shields.io/badge/ClawWorld-8B5CF6?style=for-the-badge&logo=github&logoColor=FFFFFF)](https://github.com/ron2k1/ClawWorld)
-[![OpenClaw Gateway](https://img.shields.io/badge/OpenClaw_Gateway-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/OpenClaw)
+[![FullEV-PropAnalyzer](https://img.shields.io/badge/FullEV--PropAnalyzer-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/ron2k1/FullEV-PropAnalyzer)
+[![FastRust](https://img.shields.io/badge/FastRust_(Compute)-DEA584?style=for-the-badge&logo=rust&logoColor=0D1117)](https://github.com/ron2k1/FastRust)
 
 ---
 
@@ -49,24 +48,23 @@ Built on the [OpenClaw](https://github.com/ron2k1/OpenClaw) gateway, ClawWorld r
 
 <div align="center">
 
-**NBA Prop EV Analyzer**
+**DiamondClaws**
 
-*Sports analytics engine*
+*Cognitive distortion engine for equity research*
 
 </div>
 
-Calibrated probability models + multi-book scanning to find +EV player prop bets across BetMGM, DraftKings, and FanDuel.
+Red-team simulator that injects documented cognitive biases (Kahneman, Nickerson, Weinstein) as **deterministic data transformations** before routing to LLM sell-side personas. Every response includes `distortions_applied` citing the source papers. Ships with a consensus attack simulation that models how coordinated desks manufacture artificial buy-side consensus.
 
 <table><tbody>
-<tr><td><b>Math</b></td><td>Normal CDF · Poisson · temperature-scaled calibration</td></tr>
-<tr><td><b>Tracking</b></td><td>CLV analysis · paper trading journal · settlement</td></tr>
-<tr><td><b>Interface</b></td><td>7-tab Alpine.js dashboard · CLI · HTTP API</td></tr>
-<tr><td><b>LLM</b></td><td>Ollama primary · Claude API fallback</td></tr>
+<tr><td><b>Interface</b></td><td>Bloomberg-dark UI · Lightweight Charts · vanilla JS</td></tr>
+<tr><td><b>Agents</b></td><td>Headmaster + 3 roundtable personas via OpenRouter (200+ models)</td></tr>
+<tr><td><b>Audit</b></td><td>Full distortion trail per response — what was warped, how, why</td></tr>
 </tbody></table>
 
 <div align="center">
 
-[![Repo](https://img.shields.io/badge/View_Repo-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/ron2k1/nba-propEVanalyzer)
+[![DiamondClaws](https://img.shields.io/badge/DiamondClaws-8B5CF6?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/diamondclaws)
 
 </div>
 
@@ -75,24 +73,24 @@ Calibrated probability models + multi-book scanning to find +EV player prop bets
 
 <div align="center">
 
-**RedLine**
+**ClawWorld** *(private)* + **OpenClaw**
 
-*SEC filing risk intelligence*
+*Tile-based RPG where every NPC is a live AI agent*
 
 </div>
 
-Automated EDGAR monitoring with sentence-level diffing across 10-K/10-Q filings, 9 red flag patterns, and two-stage LLM severity scoring.
+Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animation, map transitions, and 13 AI-powered NPCs routed across Anthropic, xAI, Ollama, and subprocess backends. OpenClaw is the gateway: 3-tier security gatekeeper, 8-layer quality gate, self-healing retry loop, and adversarial review gate that spawns a separate skeptical Claude to find problems.
 
 <table><tbody>
-<tr><td><b>Coverage</b></td><td>Any SEC-reporting company · 5-year backfill</td></tr>
-<tr><td><b>Analysis</b></td><td>Sentence-level structural diffing · 9 red flags</td></tr>
-<tr><td><b>Scoring</b></td><td>Deterministic gate → LLM severity assessment</td></tr>
-<tr><td><b>Reliability</b></td><td>Crash-safe pipeline · auto-resume · 123 tests</td></tr>
+<tr><td><b>Delegation</b></td><td>Real multi-agent tool calls — NPCs consult each other mid-stream</td></tr>
+<tr><td><b>Memory</b></td><td>Errors feed back into CLAUDE.md primer on next invocation</td></tr>
+<tr><td><b>Tests</b></td><td>89 frontend (Vitest) + 89 backend (pytest) + CI</td></tr>
 </tbody></table>
 
 <div align="center">
 
-[![Repo](https://img.shields.io/badge/View_Repo-FF4444?style=for-the-badge&logo=github&logoColor=FFFFFF)](https://github.com/ron2k1/RedLine)
+[![ClawWorld](https://img.shields.io/badge/ClawWorld-10B981?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/ClawWorld)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/OpenClaw)
 
 </div>
 
@@ -104,23 +102,72 @@ Automated EDGAR monitoring with sentence-level diffing across 10-K/10-Q filings,
 
 ---
 
-**FastRust** · *Collaborator*
-
-*FastAPI-style DX with Rust-level performance on Hyper*
-
 </div>
 
-A Rust web framework for clean, ergonomic endpoints without sacrificing control over the Hyper runtime. Trie-based routing, typed extractors, proc macro decorators, middleware (CORS, auth, logging), and auto-generated OpenAPI docs.
+## More Projects
 
-<div align="center">
+<table>
+<tr>
+<td width="50%" valign="top">
 
-Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https://github.com/chadha19)
+**[Numina](https://github.com/ron2k1/numina)** — *SEC EDGAR claim verifier*
 
-[![Repo](https://img.shields.io/badge/View_Repo-DEA584?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/Purabhh/FastRust)
+Multi-tenant REST API that runs LLM-generated financial text through an extraction and normalization pipeline and verdicts each numeric claim against live XBRL ground truth, with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, 240 manually verified fixture data points.
 
----
+`FastAPI` `edgartools` `PostgreSQL` `React 19`
 
-</div>
+</td>
+<td width="50%" valign="top">
+
+**[RedLine](https://github.com/ron2k1/RedLine)** — *SEC filing risk intelligence*
+
+Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffing across 10-K/10-Q filings using cosine similarity + greedy bipartite matching, flags material changes with 9 red-flag patterns, and surfaces risk insights through local LLM analysis. 172 tests, zero paid APIs.
+
+`Python` `sentence-transformers` `Ollama` `Flask` `SQLite`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**[InternPilot](https://github.com/ron2k1/internpilot)** — *Automated job applications*
+
+8-stage pipeline: scrapes 7 job boards, scores postings against a resume profile, auto-fills Greenhouse/Workday/Lever/Ashby/iCIMS/SmartRecruiters forms via Playwright, generates cover letters via local LLM with an AI-slop kill-list post-processor, and tracks CLV across 120 target firms (quant/HFT/fintech).
+
+`Python` `Playwright` `Ollama` `FastAPI` `APScheduler`
+
+</td>
+<td width="50%" valign="top">
+
+**[nemotron-reasoning-challenge](https://github.com/ron2k1/nemotron-reasoning-challenge)** — *Autonomous fine-tuning pipeline*
+
+24/7 daemon that loops through 10 stages — Claude-powered math CoT generation → QLoRA SFT via Axolotl → GRPO reinforcement learning → vLLM eval → Claude failure diagnosis → Kaggle submission → repeat. Deadline-aware: strategy shifts from explore → exploit → submit_best as June 2026 approaches.
+
+`PyTorch` `Axolotl` `trl GRPOTrainer` `vLLM` `Claude API`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+**[StormLink](https://github.com/Purabhh/stormlink)** — *Disaster response dashboard* · HackUSF 2026
+
+Multi-agent AI dashboard routing natural language queries through Google ADK/Gemini to surface live NOAA weather alerts and nearby emergency resources on an interactive Leaflet map. AgentPanel visualizes the routing pipeline with animated data packets and live elapsed timers.
+
+`Google ADK` `Gemini 2.5 Flash` `Next.js 16` `FastAPI` `Leaflet`
+
+</td>
+<td width="50%" valign="top">
+
+**[vulnerability-radar](https://github.com/ron2k1/vulnerability-radar)** — *Enterprise CVE radar*
+
+FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 14 test modules.
+
+`Python` `FastAPI` `asyncpg` `Prometheus` `CVSS v3.1`
+
+</td>
+</tr>
+</table>
 
 <br/>
 
@@ -132,14 +179,15 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)
 
-**`ML / Data`**
+**`ML / Quant`**
 
 ![XGBoost](https://img.shields.io/badge/XGBoost-189FDD?style=flat-square&logo=xgboost&logoColor=white)
+![LightGBM](https://img.shields.io/badge/LightGBM-02569B?style=flat-square&logo=lightgbm&logoColor=white)
 ![scikit--learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
 ![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white)
@@ -148,19 +196,20 @@ Built with [**@Purabhh**](https://github.com/Purabhh) and [**@chadha19**](https:
 **`Web / Backend`**
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat-square&logo=alpinedotjs&logoColor=black)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
-![Hyper](https://img.shields.io/badge/Hyper-000000?style=flat-square&logo=rust&logoColor=white)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat-square&logo=alpinedotjs&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
-**`Infrastructure`**
+**`Infrastructure & AI`**
 
+![PyO3](https://img.shields.io/badge/PyO3-000000?style=flat-square&logo=rust&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
 ![Claude](https://img.shields.io/badge/Claude_API-D97757?style=flat-square&logo=anthropic&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 
 </div>
 
