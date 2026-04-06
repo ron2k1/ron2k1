@@ -106,18 +106,13 @@ Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animati
 
 ## More Projects
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
 **[Numina](https://github.com/ron2k1/numina)** — *SEC EDGAR claim verifier*
 
 Multi-tenant REST API that runs LLM-generated financial text through an extraction and normalization pipeline and verdicts each numeric claim against live XBRL ground truth, with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, 240 manually verified fixture data points.
 
 `FastAPI` `edgartools` `PostgreSQL` `React 19`
 
-</td>
-<td width="50%" valign="top">
+---
 
 **[RedLine](https://github.com/ron2k1/RedLine)** — *SEC filing risk intelligence*
 
@@ -125,10 +120,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 `Python` `sentence-transformers` `Ollama` `Flask` `SQLite`
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+---
 
 **[InternPilot](https://github.com/ron2k1/internpilot)** — *Automated job applications*
 
@@ -136,8 +128,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 `Python` `Playwright` `Ollama` `FastAPI` `APScheduler`
 
-</td>
-<td width="50%" valign="top">
+---
 
 **[nemotron-reasoning-challenge](https://github.com/ron2k1/nemotron-reasoning-challenge)** — *Autonomous fine-tuning pipeline*
 
@@ -145,10 +136,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 `PyTorch` `Axolotl` `trl GRPOTrainer` `vLLM` `Claude API`
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+---
 
 **[StormLink](https://github.com/Purabhh/stormlink)** — *Disaster response dashboard* · HackUSF 2026
 
@@ -156,18 +144,13 @@ Multi-agent AI dashboard routing natural language queries through Google ADK/Gem
 
 `Google ADK` `Gemini 2.5 Flash` `Next.js 16` `FastAPI` `Leaflet`
 
-</td>
-<td width="50%" valign="top">
+---
 
 **[vulnerability-radar](https://github.com/ron2k1/vulnerability-radar)** — *Enterprise CVE radar*
 
 FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 14 test modules.
 
 `Python` `FastAPI` `asyncpg` `Prometheus` `CVSS v3.1`
-
-</td>
-</tr>
-</table>
 
 <br/>
 
