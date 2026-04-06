@@ -35,8 +35,9 @@ End-to-end local prop EV engine: projection modeling, multi-book line sweep, pro
 
 <div align="center">
 
-[![FullEV-PropAnalyzer](https://img.shields.io/badge/FullEV--PropAnalyzer-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/ron2k1/FullEV-PropAnalyzer)
-[![FastRust](https://img.shields.io/badge/FastRust_(Compute)-DEA584?style=for-the-badge&logo=rust&logoColor=0D1117)](https://github.com/ron2k1/FastRust)
+![FullEV-PropAnalyzer](https://img.shields.io/badge/FullEV--PropAnalyzer-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)
+![FastRust](https://img.shields.io/badge/FastRust_(Compute)-DEA584?style=for-the-badge&logo=rust&logoColor=0D1117)
+![](https://img.shields.io/badge/source-private-21262D?style=for-the-badge&logo=github&logoColor=888888)
 
 ---
 
@@ -106,7 +107,7 @@ Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animati
 
 ## More Projects
 
-**[Numina](https://github.com/ron2k1/numina)** — *SEC EDGAR claim verifier*
+**Numina** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *SEC EDGAR claim verifier*
 
 Multi-tenant REST API that runs LLM-generated financial text through an extraction and normalization pipeline and verdicts each numeric claim against live XBRL ground truth, with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, 240 manually verified fixture data points.
 
@@ -122,7 +123,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 ---
 
-**[InternPilot](https://github.com/ron2k1/internpilot)** — *Automated job applications*
+**InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Automated job applications*
 
 8-stage pipeline: scrapes 7 job boards, scores postings against a resume profile, auto-fills Greenhouse/Workday/Lever/Ashby/iCIMS/SmartRecruiters forms via Playwright, generates cover letters via local LLM with an AI-slop kill-list post-processor, and tracks CLV across 120 target firms (quant/HFT/fintech).
 
@@ -130,7 +131,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 ---
 
-**[nemotron-reasoning-challenge](https://github.com/ron2k1/nemotron-reasoning-challenge)** — *Autonomous fine-tuning pipeline*
+**nemotron-reasoning-challenge** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Autonomous fine-tuning pipeline*
 
 24/7 daemon that loops through 10 stages — Claude-powered math CoT generation → QLoRA SFT via Axolotl → GRPO reinforcement learning → vLLM eval → Claude failure diagnosis → Kaggle submission → repeat. Deadline-aware: strategy shifts from explore → exploit → submit_best as June 2026 approaches.
 
@@ -146,7 +147,7 @@ Multi-agent AI dashboard routing natural language queries through Google ADK/Gem
 
 ---
 
-**[vulnerability-radar](https://github.com/ron2k1/vulnerability-radar)** — *Enterprise CVE radar*
+**vulnerability-radar** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Enterprise CVE radar*
 
 FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 14 test modules.
 
