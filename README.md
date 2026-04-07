@@ -125,7 +125,7 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 **InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Automated job applications*
 
-8-stage pipeline (scrape, enrich descriptions, score, enrich contacts, draft, humanize, apply, track). Scrapes 12+ sources including JSearch, Greenhouse, Lever, Indeed, LinkedIn, Handshake, GitHub job listings, Firecrawl, SpeedyApply, and ZapplyJobs. Scores against a resume profile, drafts cover letters via local LLM, and tracks applications across 127 target firms.
+8-stage pipeline (scrape, enrich descriptions, score, enrich contacts, draft, humanize, apply, track). Scrapes 12+ sources including JSearch, Greenhouse, Lever, Indeed, LinkedIn, Handshake, and GitHub job listings. Auto-fills Greenhouse/Workday/Lever/Ashby/iCIMS/SmartRecruiters forms via Playwright, drafts cover letters via local LLM, and tracks applications across 127 target firms.
 
 `Python` `Playwright` `Ollama` `FastAPI` `APScheduler`
 
