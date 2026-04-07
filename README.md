@@ -49,31 +49,6 @@ Local prop EV engine covering projection modeling, multi-book line sweep, probab
 
 <div align="center">
 
-**DiamondClaws**
-
-*Cognitive distortion engine for equity research*
-
-</div>
-
-Red-team simulator that injects documented cognitive biases (Kahneman, Nickerson, Weinstein) as **deterministic data transformations** before routing to LLM sell-side personas. Every response includes `distortions_applied` citing the source papers. Ships with a consensus attack simulation that models how coordinated desks manufacture artificial buy-side consensus.
-
-<table><tbody>
-<tr><td><b>Interface</b></td><td>Bloomberg-dark UI · Lightweight Charts · vanilla JS</td></tr>
-<tr><td><b>Agents</b></td><td>Headmaster + 3 roundtable personas via OpenRouter (200+ models)</td></tr>
-<tr><td><b>Audit</b></td><td>Full distortion trail per response: what was warped, how, why</td></tr>
-</tbody></table>
-
-<div align="center">
-
-[![DiamondClaws](https://img.shields.io/badge/DiamondClaws-8B5CF6?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/diamondclaws)
-
-</div>
-
-</td>
-<td width="50%" valign="top">
-
-<div align="center">
-
 **ClawWorld** *(private)* + **OpenClaw**
 
 *Tile-based RPG where every NPC is a live AI agent*
@@ -96,6 +71,31 @@ Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animati
 </div>
 
 </td>
+<td width="50%" valign="top">
+
+<div align="center">
+
+**[RedLine](https://github.com/ron2k1/RedLine)**
+
+*SEC filing risk intelligence*
+
+</div>
+
+Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffing across 10-K/10-Q filings using cosine similarity + greedy bipartite matching, flags material changes with 9 red-flag patterns, and surfaces risk insights through local LLM analysis. Zero paid APIs.
+
+<table><tbody>
+<tr><td><b>Diffing</b></td><td>Sentence-level cosine similarity + greedy bipartite matching</td></tr>
+<tr><td><b>Analysis</b></td><td>9 red-flag patterns + local LLM risk scoring via Ollama</td></tr>
+<tr><td><b>Tests</b></td><td>172 tests, all external calls mocked</td></tr>
+</tbody></table>
+
+<div align="center">
+
+[![RedLine](https://img.shields.io/badge/RedLine-EF4444?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/RedLine)
+
+</div>
+
+</td>
 </tr>
 </table>
 
@@ -106,22 +106,6 @@ Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animati
 </div>
 
 ## More Projects
-
-**Numina** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *SEC EDGAR claim verifier*
-
-REST API that runs LLM-generated financial text through extraction and normalization, then verdicts each numeric claim against live XBRL ground truth with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, verified claim fixture suite covering 12 financial metrics across multiple SEC filers.
-
-`FastAPI` `edgartools` `PostgreSQL` `React 19`
-
----
-
-**[RedLine](https://github.com/ron2k1/RedLine)** -- *SEC filing risk intelligence*
-
-Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffing across 10-K/10-Q filings using cosine similarity + greedy bipartite matching, flags material changes with 9 red-flag patterns, and surfaces risk insights through local LLM analysis. 172 tests, zero paid APIs.
-
-`Python` `sentence-transformers` `Ollama` `Flask` `SQLite`
-
----
 
 **InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Automated job applications*
 
@@ -144,14 +128,6 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 Multi-agent dashboard routing natural language queries through Google ADK/Gemini to surface live NOAA weather alerts and nearby emergency resources on an interactive Leaflet map. AgentPanel visualizes the routing pipeline with animated data packets and live elapsed timers.
 
 `Google ADK` `Gemini 2.5 Flash` `Next.js 16` `FastAPI` `Leaflet`
-
----
-
-**vulnerability-radar** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *CVE radar*
-
-FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 16 test modules, 366 tests.
-
-`Python` `FastAPI` `asyncpg` `Prometheus` `CVSS v3.1`
 
 <br/>
 
