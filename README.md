@@ -10,7 +10,7 @@
 
 <br/>
 
-> **`Economics | Statistics | Data Science | @ Rutgers University, New Brunswick`** — I build data-driven systems across quant finance, ML, and multi-agent infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
+> **`Economics | Statistics | Data Science | @ Rutgers University, New Brunswick`** -- I build data-driven systems across sports analytics, ML, and multi-agent infrastructure. Python for modeling, Rust for performance, LLMs for reasoning.
 
 <br/>
 
@@ -20,15 +20,15 @@
 
 ### FullEV-PropAnalyzer + FastRust
 
-**Production-grade NBA player-prop EV engine — paper trading phase, approaching GO-LIVE.**
+**NBA player-prop EV engine in paper trading, approaching GO-LIVE.**
 
 </div>
 
-End-to-end local prop EV engine: projection modeling, multi-book line sweep, probability calibration with isotonic regression, 8-layer signal gating, historical backtesting against 9M+ odds snapshots, and CLV-tracked paper trading. `FastRust` is a companion Rust compute engine via PyO3 that handles the hot-path EV math with GIL-releasing batch parallelism, targeting ~150x speedup on full-season backtests.
+Local prop EV engine covering projection modeling, multi-book line sweep, probability calibration with isotonic regression, 8-layer signal gating, historical backtesting against 9M+ odds snapshots, and CLV-tracked paper trading. `FastRust` is a companion Rust compute engine via PyO3 that handles the hot-path EV math with GIL-releasing batch parallelism.
 
 <table><tbody>
 <tr><td><b>Calibration</b></td><td>Temperature scaling + isotonic regression, per-stat per-side, walk-forward isolation</td></tr>
-<tr><td><b>Signal gate</b></td><td>8+ independent veto conditions — edge floor, CLV gate, Pinnacle direction, injury-return detection</td></tr>
+<tr><td><b>Signal gate</b></td><td>8 independent veto conditions: edge floor, CLV gate, stat whitelist, bin blocking, confidence floor, sample gate, hit-rate check, real-line requirement</td></tr>
 <tr><td><b>Data</b></td><td>877K closing lines · 9.1M NBA snapshots · 3 full seasons</td></tr>
 <tr><td><b>Rust layer</b></td><td>PyO3 0.22 · rayon batch API · drop-in replacement for Python compute_ev()</td></tr>
 </tbody></table>
@@ -60,7 +60,7 @@ Red-team simulator that injects documented cognitive biases (Kahneman, Nickerson
 <table><tbody>
 <tr><td><b>Interface</b></td><td>Bloomberg-dark UI · Lightweight Charts · vanilla JS</td></tr>
 <tr><td><b>Agents</b></td><td>Headmaster + 3 roundtable personas via OpenRouter (200+ models)</td></tr>
-<tr><td><b>Audit</b></td><td>Full distortion trail per response — what was warped, how, why</td></tr>
+<tr><td><b>Audit</b></td><td>Full distortion trail per response: what was warped, how, why</td></tr>
 </tbody></table>
 
 <div align="center">
@@ -80,12 +80,12 @@ Red-team simulator that injects documented cognitive biases (Kahneman, Nickerson
 
 </div>
 
-Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animation, map transitions, and 13 AI-powered NPCs routed across Anthropic, xAI, Ollama, and subprocess backends. OpenClaw is the gateway: 3-tier security gatekeeper, 8-layer quality gate, self-healing retry loop, and adversarial review gate that spawns a separate skeptical Claude to find problems.
+Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animation, map transitions, and 10 AI-powered NPCs routed across Anthropic, xAI, Ollama, and subprocess backends. OpenClaw handles gateway routing with security gating and quality checks.
 
 <table><tbody>
-<tr><td><b>Delegation</b></td><td>Real multi-agent tool calls — NPCs consult each other mid-stream</td></tr>
+<tr><td><b>Delegation</b></td><td>Multi-agent tool calls: NPCs consult each other mid-stream</td></tr>
 <tr><td><b>Memory</b></td><td>Errors feed back into CLAUDE.md primer on next invocation</td></tr>
-<tr><td><b>Tests</b></td><td>89 frontend (Vitest) + 89 backend (pytest) + CI</td></tr>
+<tr><td><b>Tests</b></td><td>62 frontend (Vitest) + 213 backend (pytest) + CI</td></tr>
 </tbody></table>
 
 <div align="center">
@@ -107,15 +107,15 @@ Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animati
 
 ## More Projects
 
-**Numina** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *SEC EDGAR claim verifier*
+**Numina** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *SEC EDGAR claim verifier*
 
-Multi-tenant REST API that runs LLM-generated financial text through an extraction and normalization pipeline and verdicts each numeric claim against live XBRL ground truth, with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, 240 manually verified fixture data points.
+REST API that runs LLM-generated financial text through extraction and normalization, then verdicts each numeric claim against live XBRL ground truth with accession-level citations. Workspace-scoped multi-tenancy, Redis rate limiting, verified claim fixture suite covering 12 financial metrics across multiple SEC filers.
 
 `FastAPI` `edgartools` `PostgreSQL` `React 19`
 
 ---
 
-**[RedLine](https://github.com/ron2k1/RedLine)** — *SEC filing risk intelligence*
+**[RedLine](https://github.com/ron2k1/RedLine)** -- *SEC filing risk intelligence*
 
 Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffing across 10-K/10-Q filings using cosine similarity + greedy bipartite matching, flags material changes with 9 red-flag patterns, and surfaces risk insights through local LLM analysis. 172 tests, zero paid APIs.
 
@@ -123,33 +123,33 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 ---
 
-**InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Automated job applications*
+**InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Automated job applications*
 
-8-stage pipeline: scrapes 7 job boards, scores postings against a resume profile, auto-fills Greenhouse/Workday/Lever/Ashby/iCIMS/SmartRecruiters forms via Playwright, generates cover letters via local LLM with an AI-slop kill-list post-processor, and tracks CLV across 120 target firms (quant/HFT/fintech).
+8-stage pipeline (scrape, enrich descriptions, score, enrich contacts, draft, humanize, apply, track). Scrapes 12+ sources including JSearch, Greenhouse, Lever, Indeed, LinkedIn, Handshake, GitHub job listings, Firecrawl, SpeedyApply, and ZapplyJobs. Scores against a resume profile, drafts cover letters via local LLM, and tracks applications across 127 target firms.
 
 `Python` `Playwright` `Ollama` `FastAPI` `APScheduler`
 
 ---
 
-**nemotron-reasoning-challenge** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Autonomous fine-tuning pipeline*
+**nemotron-reasoning-challenge** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Autonomous fine-tuning pipeline*
 
-24/7 daemon that loops through 10 stages — Claude-powered math CoT generation → QLoRA SFT via Axolotl → GRPO reinforcement learning → vLLM eval → Claude failure diagnosis → Kaggle submission → repeat. Deadline-aware: strategy shifts from explore → exploit → submit_best as June 2026 approaches.
+24/7 daemon looping through 10 stages: Claude-powered math CoT generation, QLoRA SFT via Axolotl, GRPO reinforcement learning, vLLM eval, Claude failure diagnosis, Kaggle submission, repeat. Deadline-aware strategy that shifts from explore to exploit to submit_best as June 2026 approaches.
 
 `PyTorch` `Axolotl` `trl GRPOTrainer` `vLLM` `Claude API`
 
 ---
 
-**[StormLink](https://github.com/Purabhh/stormlink)** — *Disaster response dashboard* · HackUSF 2026
+**[StormLink](https://github.com/Purabhh/stormlink)** -- *Disaster response dashboard* (HackUSF 2026)
 
-Multi-agent AI dashboard routing natural language queries through Google ADK/Gemini to surface live NOAA weather alerts and nearby emergency resources on an interactive Leaflet map. AgentPanel visualizes the routing pipeline with animated data packets and live elapsed timers.
+Multi-agent dashboard routing natural language queries through Google ADK/Gemini to surface live NOAA weather alerts and nearby emergency resources on an interactive Leaflet map. AgentPanel visualizes the routing pipeline with animated data packets and live elapsed timers.
 
 `Google ADK` `Gemini 2.5 Flash` `Next.js 16` `FastAPI` `Leaflet`
 
 ---
 
-**vulnerability-radar** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) — *Enterprise CVE radar*
+**vulnerability-radar** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *CVE radar*
 
-FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 14 test modules.
+FastAPI service that ingests CVEs from NVD API v2.0, scores them with a hand-implemented CVSS v3.1 calculator (validated against Log4Shell, BlueKeep vectors), maps to NIST CSF functions via CWE-to-function lookup, and delivers deduped webhook alerts with exponential-backoff retry. 16 test modules, 366 tests.
 
 `Python` `FastAPI` `asyncpg` `Prometheus` `CVSS v3.1`
 
