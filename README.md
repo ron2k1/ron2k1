@@ -43,45 +43,37 @@ Local prop EV engine covering projection modeling, multi-book line sweep, probab
 
 </div>
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
 <div align="center">
 
-**ClawWorld** *(private)* + **OpenClaw**
+### ClawWorld + OpenClaw
 
-*Tile-based RPG where every NPC is a live AI agent*
+**Tile-based RPG where every NPC is a live AI agent.**
 
 </div>
 
-Custom Canvas engine (no Phaser/Pixi) with A* pathfinding, 4-directional animation, map transitions, and 10 AI-powered NPCs routed across Anthropic, xAI, Ollama, and subprocess backends. OpenClaw handles gateway routing with security gating and quality checks.
+Built the rendering engine from scratch (no Phaser or Pixi) with A* pathfinding, 4-directional sprite animation, and map transitions. 10 NPCs each route to their own LLM provider (Anthropic, xAI, Ollama, or subprocess). Agents can consult each other mid-conversation through tool-call delegation. [OpenClaw](https://github.com/ron2k1/OpenClaw) sits behind the gateway and handles security gating, quality checks, and an 8-layer validation pipeline.
 
 <table><tbody>
-<tr><td><b>Delegation</b></td><td>Multi-agent tool calls: NPCs consult each other mid-stream</td></tr>
-<tr><td><b>Memory</b></td><td>Errors feed back into CLAUDE.md primer on next invocation</td></tr>
-<tr><td><b>Tests</b></td><td>62 frontend (Vitest) + 213 backend (pytest) + CI</td></tr>
+<tr><td><b>Delegation</b></td><td>NPCs consult each other mid-stream via ask_agent() tool calls</td></tr>
+<tr><td><b>Providers</b></td><td>Anthropic, xAI, Ollama, subprocess, OpenClaw WebSocket (Ed25519 auth)</td></tr>
+<tr><td><b>Tests</b></td><td>62 frontend (Vitest) + 213 backend (pytest)</td></tr>
 </tbody></table>
 
 <div align="center">
 
 [![ClawWorld](https://img.shields.io/badge/ClawWorld-10B981?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/ClawWorld)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/OpenClaw)
+![](https://img.shields.io/badge/private_repo-21262D?style=for-the-badge&logo=github&logoColor=888888)
+
+---
+
+### RedLine
+
+**SEC filing change detection with local LLM analysis.**
 
 </div>
 
-</td>
-<td width="50%" valign="top">
-
-<div align="center">
-
-**[RedLine](https://github.com/ron2k1/RedLine)**
-
-*SEC filing risk intelligence*
-
-</div>
-
-Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffing across 10-K/10-Q filings using cosine similarity + greedy bipartite matching, flags material changes with 9 red-flag patterns, and surfaces risk insights through local LLM analysis. Zero paid APIs.
+Watches any SEC-reporting company on EDGAR. When a new 10-K or 10-Q drops, it diffs each section against the prior filing at the sentence level using cosine similarity and greedy bipartite matching, flags material changes against 9 red-flag patterns, and runs risk scoring through a local Ollama model. No paid APIs, no cloud dependencies.
 
 <table><tbody>
 <tr><td><b>Diffing</b></td><td>Sentence-level cosine similarity + greedy bipartite matching</td></tr>
@@ -93,23 +85,15 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 [![RedLine](https://img.shields.io/badge/RedLine-EF4444?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/RedLine)
 
-</div>
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-
 ---
 
 </div>
 
 ## More Projects
 
-**InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Automated job applications*
+**InternPilot** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Automated job application pipeline*
 
-8-stage pipeline (scrape, enrich descriptions, score, enrich contacts, draft, humanize, apply, track). Scrapes 12+ sources including JSearch, Greenhouse, Lever, Indeed, LinkedIn, Handshake, and GitHub job listings. Auto-fills Greenhouse/Workday/Lever/Ashby/iCIMS/SmartRecruiters forms via Playwright, drafts cover letters via local LLM, and tracks applications across 127 target firms.
+8-stage pipeline that scrapes 13 job sources (JSearch, Greenhouse, Lever, Indeed, LinkedIn, Handshake, GitHub listings, and more), scores postings against my resume profile, auto-fills ATS forms via Playwright (Greenhouse, Workday, Lever, Ashby, iCIMS, SmartRecruiters), and drafts cover letters through a local LLM. Currently tracking 127 target firms.
 
 `Python` `Playwright` `Ollama` `FastAPI` `APScheduler`
 
@@ -117,17 +101,27 @@ Monitors any SEC-reporting company on EDGAR, runs sentence-level semantic diffin
 
 **nemotron-reasoning-challenge** ![](https://img.shields.io/badge/private-21262D?style=flat-square&logo=github&logoColor=888888) -- *Autonomous fine-tuning pipeline*
 
-24/7 daemon looping through 10 stages: Claude-powered math CoT generation, QLoRA SFT via Axolotl, GRPO reinforcement learning, vLLM eval, Claude failure diagnosis, Kaggle submission, repeat. Deadline-aware strategy that shifts from explore to exploit to submit_best as June 2026 approaches.
+Daemon that loops through 10 stages: Claude-powered math CoT generation, QLoRA SFT via Axolotl, GRPO reinforcement learning, vLLM eval, failure diagnosis, and Kaggle submission. Deadline-aware strategy that shifts from exploration to exploitation as the June 2026 deadline approaches.
 
 `PyTorch` `Axolotl` `trl GRPOTrainer` `vLLM` `Claude API`
 
 ---
 
+## Hackathons
+
 **[StormLink](https://github.com/Purabhh/stormlink)** -- *Disaster response dashboard* (HackUSF 2026)
 
-Multi-agent dashboard routing natural language queries through Google ADK/Gemini to surface live NOAA weather alerts and nearby emergency resources on an interactive Leaflet map. AgentPanel visualizes the routing pipeline with animated data packets and live elapsed timers.
+Multi-agent dashboard that routes natural language queries through Google ADK/Gemini to pull live NOAA weather alerts and nearby emergency resources onto a Leaflet map. Built the AgentPanel component that visualizes the routing pipeline with animated data packets and elapsed timers.
 
 `Google ADK` `Gemini 2.5 Flash` `Next.js 16` `FastAPI` `Leaflet`
+
+---
+
+**[DiamondClaws](https://github.com/ron2k1/diamondclaws)** -- *Adversarial equity research simulator* ([MischiefClaw Hack NY](https://nyc.aitinkerers.org/p/evil-clawhack-ny), AI Tinkerers NYC)
+
+Red-team tool that injects documented cognitive biases (Kahneman, Nickerson, Weinstein) as deterministic data transformations before routing to LLM sell-side personas. Every response ships with a `distortions_applied` field citing the source papers, so you can see exactly what was warped and why. Built for the "build the worst possible OpenClaw instance" challenge.
+
+`Python` `OpenRouter` `Lightweight Charts` `vanilla JS`
 
 <br/>
 
