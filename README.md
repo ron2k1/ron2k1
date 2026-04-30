@@ -2,6 +2,8 @@
 
 <img src="https://capsule-render.vercel.app/api?type=cylinder&color=gradient&customColorList=12,14,16,18,20&height=230&section=header&text=Ronil%20Basu&fontSize=55&fontColor=FFFFFF&fontAlignY=40&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=E0E0E0&descAlignY=62&animation=scaleIn" width="100%" />
 
+[![GitTok — vertical demo videos of finished GitHub projects](https://dev.gittok.net/og/readme-card.svg)](https://dev.gittok.net/feed)
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1)
 [![Profile Views](https://komarev.com/ghpvc/?username=ron2k1&style=for-the-badge&color=00d9ff)](https://github.com/ron2k1)
