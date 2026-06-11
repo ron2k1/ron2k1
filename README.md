@@ -4,6 +4,7 @@
 
 [![GitTok — vertical demo videos of finished GitHub projects](https://dev.gittok.net/og/readme-card.svg)](https://dev.gittok.net/feed)
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-ron2k1.github.io-E0202F?style=for-the-badge&logo=githubpages&logoColor=white)](https://ron2k1.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1)
 [![Profile Views](https://komarev.com/ghpvc/?username=ron2k1&style=for-the-badge&color=00d9ff)](https://github.com/ron2k1)
