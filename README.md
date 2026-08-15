@@ -2,8 +2,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=cylinder&color=gradient&customColorList=12,14,16,18,20&height=230&section=header&text=Ronil%20Basu&fontSize=55&fontColor=FFFFFF&fontAlignY=40&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=E0E0E0&descAlignY=62&animation=scaleIn" width="100%" />
 
-[![GitTok - vertical demo videos of finished GitHub projects](https://dev.gittok.net/og/readme-card.svg)](https://dev.gittok.net/feed)
-
 [![Portfolio](https://img.shields.io/badge/Portfolio-ron2k1.github.io-E0202F?style=for-the-badge&logo=githubpages&logoColor=white)](https://ron2k1.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1)
@@ -65,42 +63,6 @@ Reads a PDF section by section and streams structured notes over SSE from a loca
 <div align="center">
 
 [![marginalia](https://img.shields.io/badge/marginalia-8B5CF6?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/marginalia)
-
----
-
-</div>
-
-<div align="center">
-
-### GitTok
-
-**Vertical-video PWA for sharing build demos.**
-
-<br/>
-
-[![LIVE at dev.gittok.net](https://img.shields.io/badge/LIVE-dev.gittok.net-FF4081?style=for-the-badge&logo=railway&logoColor=white&labelColor=0D1117)](https://dev.gittok.net)
-
-</div>
-
-15-60 second build demos in a TikTok-style vertical feed for shipped GitHub projects. 33 numbered Postgres migrations behind a Codex adversarial-review CI gate that blocks the PR if a reviewer's findings haven't been answered in the diff. GDPR Article-17 erasure is wired into automated PII drift checks that fail the build if personal data leaks into a new column.
-
-<div align="center">
-
-![migrations](https://img.shields.io/badge/migrations-33_numbered-FF4081?style=flat-square&labelColor=0D1117)
-![CI gate](https://img.shields.io/badge/CI_gate-Codex_adversarial-FF4081?style=flat-square&labelColor=0D1117)
-![compliance](https://img.shields.io/badge/compliance-GDPR_Article_17-FF4081?style=flat-square&labelColor=0D1117)
-![PII drift](https://img.shields.io/badge/PII_drift-blocks_PR-FF4081?style=flat-square&labelColor=0D1117)
-
-<br/>
-
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Postgres](https://img.shields.io/badge/Postgres-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white)
-
-<br/>
-
-![source-private](https://img.shields.io/badge/source-private-21262D?style=for-the-badge&logo=github&logoColor=888888)
 
 ---
 
