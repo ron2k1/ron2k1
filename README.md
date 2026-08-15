@@ -166,7 +166,7 @@ Watches any SEC-reporting company on EDGAR. When a new 10-K or 10-Q drops, diffs
 
 `Python` `Ollama` `EDGAR` `cosine similarity` `bipartite matching`
 
-**Also public:** [Crash](https://github.com/ron2k1/crash-app) (desktop marketplace where AI agents shop for tools and pay over Coinbase x402), [spotify-cleaner](https://github.com/ron2k1/spotify-cleaner) (dry-run-first CLI that prunes your least-listened liked songs), [gencost](https://github.com/ron2k1/gencost) (real-time gen-AI cost metering, hackathon build), and [Cluely](https://github.com/ron2k1/Ronils-Cluely-OPENSOURCE) (capture-invisible meeting overlay for Windows).
+**Also public:** [Crash](https://github.com/ron2k1/crash-app) (desktop marketplace where AI agents shop for tools and pay over Coinbase x402), [spotify-cleaner](https://github.com/ron2k1/spotify-cleaner) (dry-run-first CLI that prunes your least-listened liked songs), and [Cluely](https://github.com/ron2k1/Ronils-Cluely-OPENSOURCE) (capture-invisible meeting overlay for Windows).
 
 <br/>
 
