@@ -2,7 +2,7 @@
 
 <img src="https://capsule-render.vercel.app/api?type=cylinder&color=gradient&customColorList=12,14,16,18,20&height=230&section=header&text=Ronil%20Basu&fontSize=55&fontColor=FFFFFF&fontAlignY=40&desc=Building%20systems%20that%20turn%20data%20into%20edge.&descSize=18&descColor=E0E0E0&descAlignY=62&animation=scaleIn" width="100%" />
 
-[![GitTok — vertical demo videos of finished GitHub projects](https://dev.gittok.net/og/readme-card.svg)](https://dev.gittok.net/feed)
+[![GitTok - vertical demo videos of finished GitHub projects](https://dev.gittok.net/og/readme-card.svg)](https://dev.gittok.net/feed)
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-ron2k1.github.io-E0202F?style=for-the-badge&logo=githubpages&logoColor=white)](https://ron2k1.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ronil-basu)
@@ -40,6 +40,31 @@ Kernel-enforced cleanup on wrapper exit. Windows uses a Win32 Job Object with `J
 
 [![claude-code-structured-concurrency](https://img.shields.io/badge/claude--code--structured--concurrency-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/claude-code-structured-concurrency)
 ![CI](https://img.shields.io/badge/CI-passing-10B981?style=for-the-badge&logo=githubactions&logoColor=white)
+
+---
+
+</div>
+
+<div align="center">
+
+### Marginalia
+
+**Local-first PDF-to-notes app where every note is pinned to its source sentence.**
+
+</div>
+
+Reads a PDF section by section and streams structured notes over SSE from a local Ollama model, so there's no API key and nothing leaves the machine. Every note carries an anchor chip: click the card and the PDF scrolls to the matched passage and flashes it. The resolver tries an exact text match, falls back to fuzzy matching when the wording drifts, and degrades honestly to page-level anchoring with the chip telling you which happened. Built for paper: notes export to wide-margin or Cornell print layouts for copying out longhand.
+
+<table><tbody>
+<tr><td><b>Anchoring</b></td><td>Exact, fuzzy, then page-only resolution. Coordinates normalized to the page, so anchors survive zoom and resize</td></tr>
+<tr><td><b>Generation</b></td><td>Local Ollama (qwen2.5:7b) streamed over SSE, detail dial from Concise to Thorough</td></tr>
+<tr><td><b>Stack</b></td><td>FastAPI + SQLModel + PyMuPDF backend, React + TypeScript + Vite + pdf.js frontend</td></tr>
+<tr><td><b>Testing</b></td><td>Hermetic Playwright e2e suite boots its own MockDriver backend on scratch ports</td></tr>
+</tbody></table>
+
+<div align="center">
+
+[![marginalia](https://img.shields.io/badge/marginalia-8B5CF6?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ron2k1/marginalia)
 
 ---
 
@@ -89,7 +114,7 @@ Kernel-enforced cleanup on wrapper exit. Windows uses a Win32 Job Object with `J
 
 </div>
 
-Local prop EV engine covering projection modeling, multi-book line sweep, probability calibration with isotonic regression, 8-layer signal gating, historical backtesting against 9M+ odds snapshots, and CLV-tracked paper trading. `FastRust` is a companion Rust compute engine via PyO3 that handles the hot-path EV math with GIL-releasing batch parallelism, drop-in replaceable with the Python `compute_ev()`.
+Local prop EV engine covering projection modeling, multi-book line sweep, probability calibration with isotonic regression, 8-layer signal gating, historical backtesting against 9M+ odds snapshots, and CLV-tracked paper trading. `FastRust` is a companion Rust compute engine via PyO3 that handles the hot-path EV math with GIL-releasing batch parallelism, drop-in replaceable with the Python `compute_ev()`. The run's charts and verified numbers are public in [courtside-showcase](https://github.com/ron2k1/courtside-showcase).
 
 <table><tbody>
 <tr><td><b>Calibration</b></td><td>Temperature scaling + isotonic regression, per-stat per-side, walk-forward isolation</td></tr>
@@ -102,6 +127,7 @@ Local prop EV engine covering projection modeling, multi-book line sweep, probab
 
 ![FullEV-PropAnalyzer](https://img.shields.io/badge/FullEV--PropAnalyzer-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)
 ![FastRust](https://img.shields.io/badge/FastRust_(Compute)-DEA584?style=for-the-badge&logo=rust&logoColor=0D1117)
+[![courtside-showcase](https://img.shields.io/badge/courtside--showcase_(evidence)-00D9FF?style=for-the-badge&logo=github&logoColor=0D1117)](https://github.com/ron2k1/courtside-showcase)
 ![](https://img.shields.io/badge/core_proprietary-21262D?style=for-the-badge&logo=github&logoColor=888888)
 
 ---
@@ -140,9 +166,19 @@ Watches any SEC-reporting company on EDGAR. When a new 10-K or 10-Q drops, diffs
 
 `Python` `Ollama` `EDGAR` `cosine similarity` `bipartite matching`
 
+**Also public:** [Crash](https://github.com/ron2k1/crash-app) (desktop marketplace where AI agents shop for tools and pay over Coinbase x402), [spotify-cleaner](https://github.com/ron2k1/spotify-cleaner) (dry-run-first CLI that prunes your least-listened liked songs), [gencost](https://github.com/ron2k1/gencost) (real-time gen-AI cost metering, hackathon build), and [Cluely](https://github.com/ron2k1/Ronils-Cluely-OPENSOURCE) (capture-invisible meeting overlay for Windows).
+
 <br/>
 
 ## Hackathons
+
+**[Intuit TechWeek SMB Underwriting](https://github.com/ron2k1/intuit-techweek-smb-underwriting)** -- *Explainable-ML underwriting challenge* (NY Tech Week 2026, **2nd place**)
+
+Our team took 2nd place at Intuit's hackathon at Intuit HQ. We converted calibrated PD models (validation AUROC 0.740) into expected-NPV approval decisions for 13,306 applicants, forecast how the funded book defaults over 13 weeks, and answered 900 causal what-if queries with per-feature guardrails. The dataset was booby-trapped with selection bias and label leakage on purpose, and finding those traps was most of the scoring. I owned the shared feature pipeline and the approval-policy deliverable.
+
+`Python` `scikit-learn` `probability calibration` `causal inference` `survival analysis`
+
+<br/>
 
 **[StormLink](https://github.com/Purabhh/stormlink)** -- *Multi-agent disaster response dashboard* (HackUSF 2026, **Best Use of ElevenLabs**)
 
@@ -162,7 +198,7 @@ Pipeline that scrapes 13 job sources (JSearch, Greenhouse, Lever, Indeed, Linked
 
 **nemotron-reasoning-challenge** -- *Autonomous fine-tuning pipeline*
 
-Daemon that loops through 10 stages: Claude-powered math CoT generation, QLoRA SFT via Axolotl, GRPO reinforcement learning, vLLM eval, failure diagnosis, and Kaggle submission. Deadline-aware strategy that shifts from exploration to exploitation as the June 2026 deadline approaches.
+Daemon that loops through 10 stages: Claude-powered math CoT generation, QLoRA SFT via Axolotl, GRPO reinforcement learning, vLLM eval, failure diagnosis, and Kaggle submission. Deadline-aware strategy that shifted from exploration to exploitation as the June 2026 deadline approached.
 
 `PyTorch` `Axolotl` `trl GRPOTrainer` `vLLM` `Claude API`
 
