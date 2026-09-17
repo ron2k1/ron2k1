@@ -6,7 +6,7 @@ from connect4 import game as G
 def test_new_state_shape():
     s = G.new_state()
     assert s["board"] == ["......."] * 6 and s["to_play"] == "R" and s["moves"] == []
-    assert s["record"] == {"humans": 0, "bot": 0, "draws": 0} and s["revision"] == 0
+    assert s["record"] == {"humans": 0, "bot": 0, "draws": 0} and s["revision"] == 0 and s["hall"] == []
 
 
 def test_human_move_then_bot_reply():
@@ -73,3 +73,39 @@ def test_apply_issues_full_column_rejected_but_later_issue_still_played():
     s, outcomes = G.apply_issues(s, [{"number": 1, "col": 0, "actor": "a"}, {"number": 2, "col": 1, "actor": "b"}], budget=0.2)
     assert [o["accepted"] for o in outcomes] == [False, True]
     assert "full" in outcomes[0]["message"] and s["revision"] == 1
+
+
+def test_human_win_appends_hall_entry_and_wall_line():
+    s = G.new_state()
+    s["board"] = ["......." , "......." , "......." , "......." , "......." , "RRR.BBB"]
+    s["moves"] = [{}] * 6
+    s2, out = G.apply_human_move(s, 3, "octocat", 14, budget=0.2)
+    assert s2["hall"] == [{"game_no": 1, "by": "octocat", "moves": 7}]
+    assert out.message == ("@octocat dropped in column 4 and won game 1. You're on the wall now. "
+                           "The next drop starts game 2.")
+
+
+def test_bot_win_and_draw_leave_hall_alone():
+    s = G.new_state()
+    s["board"] = ["......." , "......." , "......." , "......." , "R......" , "RR.BBB."]
+    s["moves"] = [{}] * 6
+    s2, out = G.apply_human_move(s, 0, "octocat", 1, budget=0.3)
+    assert s2["finished"] and s2["result"] == "B" and s2["hall"] == []
+    s = G.new_state()
+    s["board"] = ["..RBRBR", "RBRBRBR", "BRBRBRB", "BRBRBRB", "RBRBRBR", "RBRBRBR"]
+    s["moves"] = [{}] * 40
+    s2, out = G.apply_human_move(s, 0, "octocat", 2, budget=0.3)
+    assert s2["finished"] and s2["result"] == "draw" and s2["record"]["draws"] == 1 and s2["hall"] == []
+
+
+def test_load_migrates_missing_hall_and_rollover_carries_it(tmp_path):
+    old = G.new_state()
+    del old["hall"]
+    (tmp_path / "state.json").write_text(json.dumps(old), encoding="utf-8")
+    assert G.load(tmp_path / "state.json")["hall"] == []
+    s = G.new_state()
+    s.update(finished=True, result="R", game_no=4, hall=[{"game_no": 4, "by": "x", "moves": 7}],
+             board=["......." , "......." , "......." , "......." , "......." , "RRRRBBB"],
+             moves=[{"col": 0, "by": "x", "issue": 1, "actor": "R"}] * 7)
+    s2, _ = G.apply_human_move(s, 0, "hubot", 15, budget=0.2)
+    assert s2["game_no"] == 5 and s2["hall"] == [{"game_no": 4, "by": "x", "moves": 7}]
