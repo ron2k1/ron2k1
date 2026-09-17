@@ -5,14 +5,15 @@ on:
 permissions:
   contents: write
   issues: write
-concurrency:
-  group: connect4
-  cancel-in-progress: false
 jobs:
   move:
+    # Only move issues enter the concurrency group; anything else is skipped before queueing.
     if: startsWith(github.event.issue.title, 'c4|drop|')
+    concurrency:
+      group: connect4
+      cancel-in-progress: false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,26 +21,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Play the move
+      # Every run plays every open move issue in number order. If GitHub evicts a pending run
+      # from the group, the run that replaced it picks that issue up, so no drop is lost.
+      - name: Play every open move
         id: play
         env:
-          TITLE: ${{ github.event.issue.title }}
-          ACTOR: ${{ github.event.issue.user.login }}
-          ISSUE: ${{ github.event.issue.number }}
-        run: python -m connect4 move --title "$TITLE" --actor "$ACTOR" --issue "$ISSUE"
-      - name: Commit the board
-        if: steps.play.outputs.accepted == '1'
+          GH_TOKEN: ${{ github.token }}
+        run: python -m connect4 drain --outcomes "$RUNNER_TEMP/outcomes.json"
+      - name: Commit and push the board
+        if: steps.play.outputs.changed == '1'
         env:
           SUBJECT: ${{ steps.play.outputs.subject }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add game/state.json game/board.svg README.md
+          git add -A game README.md
           git commit -m "$SUBJECT"
-          for i in 1 2 3; do git push && break || (git pull --rebase origin main && sleep 3); done
-      - name: Reply and close
+          pushed=0
+          for i in 1 2 3; do
+            if git push; then pushed=1; break; fi
+            git pull --rebase origin main
+            sleep 3
+          done
+          test "$pushed" = 1
+      # Runs only after the push succeeded, so an issue is never closed with a claim that did
+      # not land. On failure the issues stay open and the next run replays them.
+      - name: Close the issues with their results
         env:
           GH_TOKEN: ${{ github.token }}
-          MESSAGE: ${{ steps.play.outputs.message }}
-          ISSUE: ${{ github.event.issue.number }}
-        run: gh issue close "$ISSUE" --comment "$MESSAGE See the board at https://github.com/ron2k1"
+        run: python -m connect4 close --outcomes "$RUNNER_TEMP/outcomes.json"

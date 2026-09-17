@@ -87,3 +87,21 @@ def apply_human_move(state: dict, col: int, actor: str, issue: int | None, budge
                                  f"and {what} game {g}. The next drop starts game {g + 1}.", subject)
     return st, Outcome(True, f"@{actor} dropped in column {col + 1}. The bot answered in column {reply.col + 1} "
                              f"(depth {reply.depth}, {reply.seconds:.1f} s). Red to play.", subject)
+
+
+def apply_issues(state: dict, issues: list[dict], budget: float = 2.0) -> tuple[dict, list[dict]]:
+    """Apply every open move issue in order. Returns the new state and one outcome dict per issue."""
+    outcomes = []
+    for it in issues:
+        state, out = apply_human_move(state, it["col"], it["actor"], it["number"], budget=budget)
+        outcomes.append({"number": it["number"], "actor": it["actor"], "accepted": out.accepted,
+                         "message": out.message, "subject": out.subject})
+    return state, outcomes
+
+
+def commit_subject(outcomes: list[dict]) -> str:
+    accepted = [o for o in outcomes if o["accepted"]]
+    if len(accepted) == 1:
+        return accepted[0]["subject"]
+    actors = list(dict.fromkeys(o["actor"] for o in accepted))
+    return f"c4: {len(accepted)} moves by " + ", ".join(f"@{a}" for a in actors)
