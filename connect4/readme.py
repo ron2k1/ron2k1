@@ -26,8 +26,16 @@ def _alt(state: dict) -> str:
             f"{NAMES[state['to_play']].lower()} to play")
 
 
+BUTTON_WIDTH = "14%"     # seven of these fill 98% of the README column, over the 100%-wide board
+
+
+def button_row(repo: str = "ron2k1/ron2k1") -> str:
+    """Seven linked drop buttons on ONE line with no whitespace between anchors, or the browser draws gaps."""
+    return "".join(f'<a href="{issue_link(c, repo)}"><img src="assets/drop-{c + 1}.svg" width="{BUTTON_WIDTH}" '
+                   f'alt="Drop in column {c + 1}"></a>' for c in range(7))
+
+
 def region(state: dict, repo: str = "ron2k1/ron2k1") -> str:
-    cols = " · ".join(f"[**{c + 1}**]({issue_link(c, repo)})" for c in range(7))
     rec = state["record"]
     record = f"Humans {rec['humans']}, bot {rec['bot']}, draws {rec['draws']}"
     if state["finished"]:
@@ -41,8 +49,10 @@ def region(state: dict, repo: str = "ron2k1/ron2k1") -> str:
             head += f" · Last move by @{human}"
     top = sorted(state["movers"].items(), key=lambda kv: (-kv[1], kv[0]))[:3]
     movers = " · Most moves: " + ", ".join(f"@{u} ({n})" for u, n in top) if top else ""
-    return (f'<img src="{board_path(state)}" alt="{_alt(state)}" width="720">\n\n'
-            f"Red is you. Drop in a column: {cols}\n\n"
+    # The buttons and the board share one paragraph so the board sits right under the buttons.
+    return ("Red is you. Tap a column to drop.\n\n"
+            f"{button_row(repo)}\n"
+            f'<img src="{board_path(state)}" alt="{_alt(state)}" width="100%">\n\n'
             f"{head} · {record}{movers}\n")
 
 

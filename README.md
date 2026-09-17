@@ -8,14 +8,15 @@ mostly local models and tools I actually use.
 ## Play me
 
 <!-- c4:start -->
-<img src="game/board-1.svg" alt="Connect Four, game 1, move 2, red to play" width="720">
+Red is you. Tap a column to drop.
 
-Red is you. Drop in a column: [**1**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C1&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**2**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C2&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**3**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C3&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**4**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C4&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**5**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C5&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**6**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C6&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**7**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C7&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.)
+<a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C1&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-1.svg" width="14%" alt="Drop in column 1"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C2&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-2.svg" width="14%" alt="Drop in column 2"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C3&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-3.svg" width="14%" alt="Drop in column 3"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C4&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-4.svg" width="14%" alt="Drop in column 4"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C5&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-5.svg" width="14%" alt="Drop in column 5"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C6&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-6.svg" width="14%" alt="Drop in column 6"></a><a href="https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C7&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute."><img src="assets/drop-7.svg" width="14%" alt="Drop in column 7"></a>
+<img src="game/board-1.svg" alt="Connect Four, game 1, move 2, red to play" width="100%">
 
 Red to play · Last move by @ron2k1 · Humans 0, bot 0, draws 0 · Most moves: @ron2k1 (1)
 <!-- c4:end -->
 
-Pick a column and press Submit on the issue it opens. Give it a minute, then refresh. The engine is
+Tap a column and press Submit on the issue it opens. Give it a minute, then refresh. The engine is
 in [connect4/](connect4/).
 
 ## Hot off the press

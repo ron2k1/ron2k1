@@ -24,6 +24,11 @@ def test_links_and_status_lines():
     s["to_play"] = "B"
     r = R.region(s)
     assert r.count("issues/new?title=c4%7Cdrop%7C") == 7
+    buttons = next(line for line in r.splitlines() if line.startswith("<a href="))
+    assert buttons.count("<a href=") == 7 and buttons.count('src="assets/drop-') == 7   # one line, no gaps
+    assert 'width="14%"' in buttons and 'alt="Drop in column 7"' in buttons
+    assert 'src="game/board-0.svg"' in r and 'width="100%"' in r
+    assert "Tap a column" in r
     assert "Bot is thinking" in r
     assert "@octocat" in r and "Humans 0, bot 0, draws 0" in r
     assert "@hubot (5)" in r
