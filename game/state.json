@@ -1,0 +1,25 @@
+{
+  "game_no": 1,
+  "board": [
+    ".......",
+    ".......",
+    ".......",
+    ".......",
+    ".......",
+    "......."
+  ],
+  "to_play": "R",
+  "moves": [],
+  "finished": false,
+  "result": null,
+  "last_move": null,
+  "last_bot": null,
+  "record": {
+    "humans": 0,
+    "bot": 0,
+    "draws": 0
+  },
+  "last_game": null,
+  "movers": {},
+  "revision": 0
+}
