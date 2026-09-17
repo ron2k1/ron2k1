@@ -14,10 +14,12 @@ Red is you. Tap a column to drop.
 <img src="game/board-1.svg" alt="Connect Four, game 1, move 2, red to play" width="100%">
 
 Red to play · Last move by @ron2k1 · Humans 0, bot 0, draws 0 · Most moves: @ron2k1 (1)
+
+<img src="game/hall-1.svg" alt="Beat the bot: nobody yet. No game finished yet." width="100%">
 <!-- c4:end -->
 
-Tap a column and press Submit on the issue it opens. Give it a minute, then refresh. The engine is
-in [connect4/](connect4/).
+Tap a column and press Submit on the issue it opens. Give it a minute, then refresh. I cap the bot
+at two seconds a move. The engine is in [connect4/](connect4/).
 
 ## Hot off the press
 

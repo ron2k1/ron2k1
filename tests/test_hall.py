@@ -150,3 +150,12 @@ def test_write_all_leaves_one_hall_file(tmp_path):
     assert [p.name for p in game.glob("hall-*.svg")] == ["hall-3.svg"]
     assert [p.name for p in game.glob("board-*.svg")] == ["board-3.svg"]
     assert 'src="game/hall-3.svg"' in (tmp_path / "README.md").read_text(encoding="utf-8")
+
+
+def test_committed_hall_asset_is_current():
+    from connect4 import readme as R
+
+    state = G.load(D.ROOT / "game" / "state.json")
+    path = D.ROOT / R.hall_path(state)
+    assert path.exists() and path.read_text(encoding="utf-8") == HL.render_hall(state)
+    assert len(list((D.ROOT / "game").glob("hall-*.svg"))) == 1
