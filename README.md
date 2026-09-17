@@ -8,11 +8,11 @@ local models, prediction engines, and tools I actually use.
 ## Play me
 
 <!-- c4:start -->
-<img src="game/board-0.svg" alt="Connect Four, game 1, move 0, red to play" width="720">
+<img src="game/board-1.svg" alt="Connect Four, game 1, move 2, red to play" width="720">
 
 Red is you. Drop in a column: [**1**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C1&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**2**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C2&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**3**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C3&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**4**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C4&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**5**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C5&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**6**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C6&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.) · [**7**](https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C7&body=Press%20Submit%20new%20issue.%20The%20bot%20answers%20here%20within%20a%20minute.)
 
-Red to play · Humans 0, bot 0, draws 0
+Red to play · Last move by @ron2k1 · Humans 0, bot 0, draws 0 · Most moves: @ron2k1 (1)
 <!-- c4:end -->
 
 Pick a column, press Submit on the issue it opens, refresh in a minute. Engine in [connect4/](connect4/).
