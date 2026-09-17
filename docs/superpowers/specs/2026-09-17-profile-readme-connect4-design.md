@@ -127,7 +127,8 @@ the position bitboards is cleared per move. Pure Python, no dependencies.
 `YOU: RED · BOT: BLUE`, column numbers 1 to 7, a paper-2 board with 42 holes, red and blue discs
 with ink outlines and a paper glint, a yellow ring on the last disc played, and a status strip:
 left `MOVE 09 · RED TO PLAY` (or `GAME OVER · RED WINS` / `BLUE WINS` / `DRAW`), right `BOT ·
-NEGAMAX α-β · DEPTH 9 · 0.8 S` from the last bot move.
+NEGAMAX · DEPTH 9 · 0.8 S` from the last bot move. The two labels together stay under 56
+characters so they never read as one line (the embedded font has no Greek, so no α-β).
 
 ### README region
 

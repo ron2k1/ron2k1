@@ -26,3 +26,15 @@ def test_status_when_finished():
 def test_no_bot_line_before_first_bot_move():
     st = dict(BASE, last_bot=None)
     assert "DEPTH" not in render_board(st)
+
+
+def test_status_labels_leave_a_gap():
+    # Both labels sit on one 632 px line at ~9.6 px per character (13 px mono, .14em tracking).
+    # The longest left label plus the longest right label must stay under 56 characters so the
+    # two never read as one run-on line.
+    st = dict(BASE, finished=True, result="B", last_bot={"col": 0, "depth": 12, "nodes": 1, "seconds": 2.0})
+    s = render_board(st)
+    assert "BOT · NEGAMAX · DEPTH 12 · 2.0 S" in s
+    left, right = "GAME OVER · BLUE WINS", "BOT · NEGAMAX · DEPTH 12 · 2.0 S"
+    assert left in s and right in s
+    assert len(left) + len(right) <= 56
