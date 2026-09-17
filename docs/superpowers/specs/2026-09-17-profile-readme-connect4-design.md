@@ -123,9 +123,10 @@ the position bitboards is cleared per move. Pure Python, no dependencies.
 
 ### Rendering
 
-`connect4/render.py` draws `game/board-<rev>.svg` (720x740): red title band `CONNECT FOUR` with a
+`connect4/render.py` draws `game/board-<rev>.svg` (750x770, the panel spanning the left 98% so it matches the button row): red title band `CONNECT FOUR` with a
 chip `YOU: RED · BOT: BLUE`, a paper-2 grid that runs from panel edge to panel edge with 42 holes
-(cell pitch 100, so column c is centred at 60 + 100c), red and blue discs with ink outlines and a
+(cell pitch 105 from the panel's left edge, so column c is centred at 52.5 + 105c, exactly the button centre
+750 * (0.07 + 0.14c)), red and blue discs with ink outlines and a
 paper glint, a yellow ring on the last disc played, and a status strip:
 left `MOVE 09 · RED TO PLAY` (or `GAME OVER · RED WINS` / `BLUE WINS` / `DRAW`), right `BOT ·
 NEGAMAX · DEPTH 9 · 0.8 S` from the last bot move. The two labels together stay under 56
