@@ -18,9 +18,9 @@ def test_board_has_42_holes_and_ring_on_last_move():
 
 def test_columns_line_up_with_the_button_row():
     # The README draws seven 14%-wide drop buttons over a 100%-wide board, so each column's
-    # centre must sit within 10 px (of 720) of its button's centre.
+    # centre must be exactly its button's centre, or a tap lands beside the disc it drops.
     for c in range(7):
-        assert abs(column_center(c) - W * (0.07 + 0.14 * c)) <= 10
+        assert abs(column_center(c) - W * (0.07 + 0.14 * c)) < 1e-6
 
 
 def test_status_when_finished():
