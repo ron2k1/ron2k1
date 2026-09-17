@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from comic import draw as D
 
-W, H = 720, 700
+W, H = 720, 724
 OX, OY, CELL = 44, 126, 90
 NAMES = {"R": "RED", "B": "BLUE"}
 FILLS = {".": D.PAPER, "R": D.RED, "B": D.BLUE}
@@ -18,7 +18,7 @@ def status_text(state: dict) -> str:
 
 def render_board(state: dict) -> str:
     b = [
-        D.panel(8, 8, 698, 676),
+        D.panel(8, 8, 698, 700),
         f"<rect x='8' y='8' width='698' height='64' fill='{D.RED}' stroke='{D.INK}' stroke-width='3'/>"
         f"<rect x='8' y='8' width='698' height='64' fill='url(#dotsp)'/>",
         f"<text class='d' x='30' y='55' font-size='40' fill='{D.PAPER}' letter-spacing='.03em'>CONNECT FOUR</text>",
@@ -39,11 +39,11 @@ def render_board(state: dict) -> str:
             b.append(f"<circle cx='{cx}' cy='{cy}' r='33' fill='{FILLS[v]}' stroke='{D.INK}' stroke-width='3'/>")
             if v != ".":
                 b.append(f"<circle cx='{cx - 9}' cy='{cy - 9}' r='7' fill='{D.PAPER}' opacity='.55'/>")
-    b.append(f"<text class='m' x='44' y='678' font-size='13' font-weight='500' letter-spacing='.14em' "
+    b.append(f"<text class='m' x='44' y='694' font-size='13' font-weight='500' letter-spacing='.14em' "
              f"fill='{D.INKSOFT}'>{status_text(state)}</text>")
     bot = state.get("last_bot")
     if bot:
-        b.append(f"<text class='m' x='674' y='678' font-size='13' font-weight='500' letter-spacing='.14em' "
+        b.append(f"<text class='m' x='674' y='694' font-size='13' font-weight='500' letter-spacing='.14em' "
                  f"fill='{D.INKSOFT}' text-anchor='end'>BOT · NEGAMAX α-β · DEPTH {bot['depth']} "
                  f"· {bot['seconds']:.1f} S</text>")
     label = f"Connect Four, game {state['game_no']}, {status_text(state).lower()}"
