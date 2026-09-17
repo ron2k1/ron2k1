@@ -44,7 +44,7 @@ def render_board(state: dict) -> str:
     bot = state.get("last_bot")
     if bot:
         b.append(f"<text class='m' x='674' y='694' font-size='13' font-weight='500' letter-spacing='.14em' "
-                 f"fill='{D.INKSOFT}' text-anchor='end'>BOT · NEGAMAX α-β · DEPTH {bot['depth']} "
+                 f"fill='{D.INKSOFT}' text-anchor='end'>BOT · NEGAMAX ALPHA-BETA · DEPTH {bot['depth']} "
                  f"· {bot['seconds']:.1f} S</text>")
     label = f"Connect Four, game {state['game_no']}, {status_text(state).lower()}"
     return D.svg(W, H, label, "".join(b))

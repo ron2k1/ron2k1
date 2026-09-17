@@ -9,7 +9,8 @@ import urllib.request
 
 from . import draw as D
 
-W, H, PW, GAP = 880, 140, 202, 24
+W, H, GAP, SHADOW = 880, 140, 24, 6
+PW = (W - 3 * GAP - 2 - SHADOW) // 4    # four panels, origin offset 2, ink shadow inside the viewBox
 LABELS = (("public_repos", "PUBLIC REPOS"), ("contributions_past_year", "CONTRIBUTIONS · PAST YEAR"),
           ("hackathon_awards", "HACKATHON AWARDS"), ("ai_roles", "AI ROLES"))
 QUERY = """query($login: String!) { user(login: $login) {
