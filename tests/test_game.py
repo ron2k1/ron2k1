@@ -52,3 +52,24 @@ def test_next_move_after_finish_starts_new_game():
 def test_bad_column_rejected():
     s, out = G.apply_human_move(G.new_state(), 9, "x", 1, budget=0.1)
     assert not out.accepted
+
+
+def test_apply_issues_in_order_with_one_outcome_each():
+    issues = [{"number": 5, "col": 3, "actor": "octocat"}, {"number": 6, "col": 3, "actor": "hubot"},
+              {"number": 7, "col": 3, "actor": "hubot"}]
+    s, outcomes = G.apply_issues(G.new_state(), issues, budget=0.2)
+    assert [o["number"] for o in outcomes] == [5, 6, 7]
+    assert all(o["accepted"] for o in outcomes)
+    assert s["revision"] == 3 and len(s["moves"]) == 6 and s["movers"] == {"octocat": 1, "hubot": 2}
+    assert [m["issue"] for m in s["moves"] if m["actor"] == "R"] == [5, 6, 7]
+    assert G.commit_subject(outcomes) == "c4: 3 moves by @octocat, @hubot"
+    assert G.commit_subject(outcomes[:1]) == "c4: game 1 move 1 by @octocat"
+
+
+def test_apply_issues_full_column_rejected_but_later_issue_still_played():
+    s = G.new_state()
+    s["board"] = ["R......", "B......", "R......", "B......", "R......", "B......"]
+    s["moves"] = [{}] * 6
+    s, outcomes = G.apply_issues(s, [{"number": 1, "col": 0, "actor": "a"}, {"number": 2, "col": 1, "actor": "b"}], budget=0.2)
+    assert [o["accepted"] for o in outcomes] == [False, True]
+    assert "full" in outcomes[0]["message"] and s["revision"] == 1
