@@ -11,8 +11,10 @@ def test_rewrite_replaces_only_the_region():
     out = R.rewrite(DOC, s)
     assert out.startswith("# hi\n\n<!-- c4:start -->\n") and out.endswith("<!-- c4:end -->\n\nfooter\n")
     assert "old" not in out
-    assert 'src="game/board.svg?rev=0"' in out
+    assert 'src="game/board-0.svg"' in out
     assert R.rewrite(out, s) == out           # idempotent
+    s["revision"] = 7
+    assert 'src="game/board-7.svg"' in R.rewrite(out, s)
 
 
 def test_links_and_status_lines():

@@ -8,6 +8,11 @@ BODY = quote("Press Submit new issue. The bot answers here within a minute.", sa
 NAMES = {"R": "Red", "B": "Blue"}
 
 
+def board_path(state: dict) -> str:
+    """One file per revision: a new path is the only cache key every proxy in the chain respects."""
+    return f"game/board-{state['revision']}.svg"
+
+
 def issue_link(col: int, repo: str = "ron2k1/ron2k1") -> str:
     return f"https://github.com/{repo}/issues/new?title=c4%7Cdrop%7C{col + 1}&body={BODY}"
 
@@ -36,7 +41,7 @@ def region(state: dict, repo: str = "ron2k1/ron2k1") -> str:
             head += f" · Last move by @{human}"
     top = sorted(state["movers"].items(), key=lambda kv: (-kv[1], kv[0]))[:3]
     movers = " · Most moves: " + ", ".join(f"@{u} ({n})" for u, n in top) if top else ""
-    return (f'<img src="game/board.svg?rev={state["revision"]}" alt="{_alt(state)}" width="720">\n\n'
+    return (f'<img src="{board_path(state)}" alt="{_alt(state)}" width="720">\n\n'
             f"Red is you. Drop in a column: {cols}\n\n"
             f"{head} · {record}{movers}\n")
 

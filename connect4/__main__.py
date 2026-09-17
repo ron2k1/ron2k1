@@ -15,8 +15,14 @@ TITLE = re.compile(r"^\s*c4\|drop\|([1-7])\s*$")
 
 
 def _write_all(state: dict, root: pathlib.Path) -> None:
-    G.save(root / "game" / "state.json", state)
-    (root / "game" / "board.svg").write_text(render_board(state), encoding="utf-8", newline="\n")
+    game_dir = root / "game"
+    game_dir.mkdir(exist_ok=True)
+    G.save(game_dir / "state.json", state)
+    board = root / R.board_path(state)
+    board.write_text(render_board(state), encoding="utf-8", newline="\n")
+    for old in game_dir.glob("board*.svg"):          # one board file per revision, never two
+        if old != board:
+            old.unlink()
     readme = root / "README.md"
     readme.write_text(R.rewrite(readme.read_text(encoding="utf-8"), state), encoding="utf-8", newline="\n")
 
