@@ -20,16 +20,18 @@ def _b64(name: str) -> str:
     return base64.b64encode((FONTS / name).read_bytes()).decode()
 
 
-def font_css() -> str:
-    return ("@font-face{font-family:'Bangers';src:url(data:font/woff2;base64," + _b64("Bangers-Regular.woff2")
-            + ") format('woff2')}"
-            "@font-face{font-family:'JetBrains Mono';src:url(data:font/woff2;base64," + _b64("JetBrainsMono.woff2")
-            + ") format('woff2')}"
-            ".d{font-family:'Bangers',Impact,sans-serif}.m{font-family:'JetBrains Mono',Consolas,monospace}")
+def font_css(mono: bool = True) -> str:
+    """Embedded fonts. Small assets that only show Bangers skip the mono face (31 KB each)."""
+    css = ("@font-face{font-family:'Bangers';src:url(data:font/woff2;base64," + _b64("Bangers-Regular.woff2")
+           + ") format('woff2')}")
+    if mono:
+        css += ("@font-face{font-family:'JetBrains Mono';src:url(data:font/woff2;base64," + _b64("JetBrainsMono.woff2")
+                + ") format('woff2')}")
+    return css + ".d{font-family:'Bangers',Impact,sans-serif}.m{font-family:'JetBrains Mono',Consolas,monospace}"
 
 
-def defs(extra: str = "") -> str:
-    return ("<defs><style>" + font_css() + "</style>"
+def defs(extra: str = "", mono: bool = True) -> str:
+    return ("<defs><style>" + font_css(mono) + "</style>"
             f"<pattern id='dots' width='9' height='9' patternUnits='userSpaceOnUse'>"
             f"<circle cx='1.5' cy='1.5' r='1' fill='{INK}' opacity='.07'/></pattern>"
             f"<pattern id='dotsp' width='9' height='9' patternUnits='userSpaceOnUse'>"
@@ -37,9 +39,9 @@ def defs(extra: str = "") -> str:
             + extra + "</defs>")
 
 
-def svg(width: int, height: int, label: str, body: str, extra_defs: str = "") -> str:
+def svg(width: int, height: int, label: str, body: str, extra_defs: str = "", mono: bool = True) -> str:
     return (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {width} {height}' width='{width}' height='{height}' "
-            f"role='img' aria-label='{esc(label)}'>" + defs(extra_defs) + body + "</svg>")
+            f"role='img' aria-label='{esc(label)}'>" + defs(extra_defs, mono) + body + "</svg>")
 
 
 def panel(x: float, y: float, w: float, h: float, fill: str = PAPER, sh: int = 6, stroke: int = 3) -> str:
