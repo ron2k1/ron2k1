@@ -43,3 +43,15 @@ def test_finished_line():
 def test_missing_markers_raises():
     with pytest.raises(ValueError):
         R.rewrite("no markers", G.new_state())
+
+
+def test_region_has_wall_image_after_status_line():
+    s = G.new_state()
+    r = R.region(s)
+    assert r.index('src="game/hall-0.svg"') > r.index("Humans 0, bot 0, draws 0")
+    assert 'alt="Beat the bot: nobody yet. No game finished yet." width="100%"' in r
+    out = R.rewrite(DOC, s)
+    assert R.rewrite(out, s) == out
+    s["revision"] = 7
+    again = R.rewrite(out, s)
+    assert 'src="game/hall-7.svg"' in again and "hall-0" not in again

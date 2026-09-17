@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
+from . import hall as HL
+
 START, END = "<!-- c4:start -->", "<!-- c4:end -->"
 BODY = quote("Press Submit new issue. The bot answers here within a minute.", safe="")
 NAMES = {"R": "Red", "B": "Blue"}
@@ -11,6 +13,10 @@ NAMES = {"R": "Red", "B": "Blue"}
 def board_path(state: dict) -> str:
     """One file per revision: a new path is the only cache key every proxy in the chain respects."""
     return f"game/board-{state['revision']}.svg"
+
+
+def hall_path(state: dict) -> str:
+    return f"game/hall-{state['revision']}.svg"
 
 
 def issue_link(col: int, repo: str = "ron2k1/ron2k1") -> str:
@@ -53,7 +59,8 @@ def region(state: dict, repo: str = "ron2k1/ron2k1") -> str:
     return ("Red is you. Tap a column to drop.\n\n"
             f"{button_row(repo)}\n"
             f'<img src="{board_path(state)}" alt="{_alt(state)}" width="100%">\n\n'
-            f"{head} · {record}{movers}\n")
+            f"{head} · {record}{movers}\n\n"
+            f'<img src="{hall_path(state)}" alt="{HL.label(state)}" width="100%">\n')
 
 
 def rewrite(text: str, state: dict, repo: str = "ron2k1/ron2k1") -> str:
