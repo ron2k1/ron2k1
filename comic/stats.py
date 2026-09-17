@@ -63,8 +63,9 @@ if __name__ == "__main__":
     old = json.loads(path.read_text(encoding="utf-8"))
     fresh = None if a.offline else fetch(a.login, a.token)
     values = merge(old, fresh)
-    if fresh:
-        values["fetched_at"] = datetime.date.today().isoformat()
-    path.write_text(json.dumps(values, indent=2) + "\n", encoding="utf-8")
+    if fresh and any(old.get(k) != v for k, v in fresh.items()):
+        values["fetched_at"] = datetime.date.today().isoformat()   # only when a number moved
+    if values != old:
+        path.write_text(json.dumps(values, indent=2) + "\n", encoding="utf-8")
     D.write(D.ROOT / "assets" / "stats.svg", build(values))
     print("assets/stats.svg written", values)
