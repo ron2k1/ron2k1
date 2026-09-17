@@ -1,0 +1,22 @@
+[
+  {
+    "title": "LANGUAGES",
+    "band": "red",
+    "chips": ["Python", "Java", "C++", "TypeScript", "JavaScript", "Go", "SQL", "R", "Rust", "Bash", "PowerShell"]
+  },
+  {
+    "title": "FRAMEWORKS & LIBRARIES",
+    "band": "blue",
+    "chips": ["FastAPI", "React", "Next.js", "Node.js", "PyTorch", "scikit-learn", "XGBoost", "LightGBM", "pandas", "NumPy", "SciPy", "statsmodels", "LangChain", "Hugging Face Transformers", "Sentence Transformers"]
+  },
+  {
+    "title": "DEVELOPER TOOLS & CLOUD",
+    "band": "yellow",
+    "chips": ["Git", "GitHub Actions", "CI/CD", "Docker", "Linux", "AWS", "Google Cloud", "Railway", "PostgreSQL", "pgvector", "SQLite", "Redis", "Supabase", "pytest", "REST APIs"]
+  },
+  {
+    "title": "MACHINE LEARNING & DATA",
+    "band": "ink",
+    "chips": ["RAG", "Semantic search", "Vector databases", "Agentic AI", "Multiagent systems", "Google ADK", "A2A", "MCP", "LLM finetuning", "LoRA / PEFT", "vLLM", "TRL", "bitsandbytes", "Prompt engineering", "LLM evaluation", "ETL", "Data pipelines", "Feature engineering", "Model calibration", "Time series validation"]
+  }
+]
