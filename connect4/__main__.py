@@ -15,6 +15,7 @@ import pathlib
 from . import game as G
 from . import issues as I
 from . import readme as R
+from .hall import render_hall
 from .render import render_board
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -29,6 +30,11 @@ def _write_all(state: dict, root: pathlib.Path) -> None:
     board.write_text(render_board(state), encoding="utf-8", newline="\n")
     for old in game_dir.glob("board*.svg"):          # one board file per revision, never two
         if old != board:
+            old.unlink()
+    hall = root / R.hall_path(state)
+    hall.write_text(render_hall(state), encoding="utf-8", newline="\n")
+    for old in game_dir.glob("hall*.svg"):
+        if old != hall:
             old.unlink()
     readme = root / "README.md"
     readme.write_text(R.rewrite(readme.read_text(encoding="utf-8"), state), encoding="utf-8", newline="\n")

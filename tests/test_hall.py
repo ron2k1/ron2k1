@@ -9,7 +9,7 @@ from connect4 import game as G
 from connect4 import hall as HL
 
 NS = "{http://www.w3.org/2000/svg}"
-BANNED = ("—", "–", ";", "●")
+BANNED = ("\u2014", "\u2013", ";", "\u25cf")
 
 
 def _texts(svg: str) -> list[str]:
@@ -133,3 +133,20 @@ def test_no_banned_glyphs_in_any_wall_string():
              HL.ON_THE_WALL, HL.label(G.new_state()), HL.label(POPULATED), HL.TITLE, HL.EMPTY_TEXT, HL.INVITE]
     for s in pool:
         assert not any(ch in s for ch in BANNED), s
+
+
+def test_write_all_leaves_one_hall_file(tmp_path):
+    from connect4.__main__ import main
+
+    (tmp_path / "README.md").write_text("# hi\n\n<!-- c4:start -->\nold\n<!-- c4:end -->\n", encoding="utf-8")
+    assert main(["init", "--root", str(tmp_path)]) == 0
+    game = tmp_path / "game"
+    assert (game / "hall-0.svg").exists() and (game / "board-0.svg").exists()
+    st = G.load(game / "state.json")
+    assert st["hall"] == []
+    st["revision"] = 3
+    G.save(game / "state.json", st)
+    assert main(["render", "--root", str(tmp_path)]) == 0
+    assert [p.name for p in game.glob("hall-*.svg")] == ["hall-3.svg"]
+    assert [p.name for p in game.glob("board-*.svg")] == ["board-3.svg"]
+    assert 'src="game/hall-3.svg"' in (tmp_path / "README.md").read_text(encoding="utf-8")
