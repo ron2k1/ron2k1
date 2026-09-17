@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 from . import engine as E
 from .bot import choose_move
+from .hall import ON_THE_WALL
 
 
 @dataclass(frozen=True)
@@ -17,15 +18,17 @@ class Outcome:
 
 
 def new_state(game_no: int = 1, record: dict | None = None, movers: dict | None = None,
-              last_game: dict | None = None, revision: int = 0) -> dict:
+              last_game: dict | None = None, hall: list | None = None, revision: int = 0) -> dict:
     return {"game_no": game_no, "board": ["." * E.COLS for _ in range(E.ROWS)], "to_play": E.RED, "moves": [],
             "finished": False, "result": None, "last_move": None, "last_bot": None,
             "record": record or {"humans": 0, "bot": 0, "draws": 0}, "last_game": last_game,
-            "movers": movers or {}, "revision": revision}
+            "movers": movers or {}, "hall": hall or [], "revision": revision}
 
 
 def load(path: str | pathlib.Path) -> dict:
-    return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+    state = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+    state.setdefault("hall", [])          # states written before the wall existed
+    return state
 
 
 def save(path: str | pathlib.Path, state: dict) -> None:
@@ -46,6 +49,9 @@ def _finish(state: dict, pos: E.Position) -> bool:
     if w:
         state["finished"], state["result"] = True, w
         state["record"]["humans" if w == E.RED else "bot"] += 1
+        if w == E.RED:                     # moves[-1] is the red drop that just won, by the issue author
+            state["hall"].append({"game_no": state["game_no"], "by": state["moves"][-1]["by"],
+                                  "moves": len(state["moves"])})
         return True
     if E.is_draw(pos):
         state["finished"], state["result"] = True, "draw"
@@ -63,7 +69,7 @@ def apply_human_move(state: dict, col: int, actor: str, issue: int | None, budge
         st = new_state(game_no=st["game_no"] + 1, record=st["record"], movers=st["movers"],
                        last_game={"game_no": st["game_no"], "result": st["result"], "moves": len(st["moves"]),
                                   "winning_move_by": None if st["result"] == "draw" else last.get("by")},
-                       revision=st["revision"])
+                       hall=st["hall"], revision=st["revision"])
     pos = E.from_rows(st["board"])
     if E.to_play(pos) != E.RED:
         return state, Outcome(False, "It is the bot's turn. Try again in a minute.", "c4: rejected move")
@@ -75,8 +81,10 @@ def apply_human_move(state: dict, col: int, actor: str, issue: int | None, budge
     st["revision"] += 1
     subject = f"c4: game {g} move {len(st['moves'])} by @{actor}"
     if _finish(st, pos):
-        what = "won" if st["result"] == E.RED else "drew"
-        return st, Outcome(True, f"@{actor} dropped in column {col + 1} and {what} game {g}. "
+        if st["result"] == E.RED:
+            return st, Outcome(True, f"@{actor} dropped in column {col + 1} and won game {g}. {ON_THE_WALL} "
+                                     f"The next drop starts game {g + 1}.", subject)
+        return st, Outcome(True, f"@{actor} dropped in column {col + 1} and drew game {g}. "
                                  f"The next drop starts game {g + 1}.", subject)
     reply = choose_move(pos, budget=budget)
     pos = _drop(st, pos, reply.col, "bot", None, E.BLUE)
