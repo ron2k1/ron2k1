@@ -123,9 +123,10 @@ the position bitboards is cleared per move. Pure Python, no dependencies.
 
 ### Rendering
 
-`connect4/render.py` draws `game/board.svg` (720x700): red title band `CONNECT FOUR` with a chip
-`YOU: RED · BOT: BLUE`, column numbers 1 to 7, a paper-2 board with 42 holes, red and blue discs
-with ink outlines and a paper glint, a yellow ring on the last disc played, and a status strip:
+`connect4/render.py` draws `game/board-<rev>.svg` (720x740): red title band `CONNECT FOUR` with a
+chip `YOU: RED · BOT: BLUE`, a paper-2 grid that runs from panel edge to panel edge with 42 holes
+(cell pitch 100, so column c is centred at 60 + 100c), red and blue discs with ink outlines and a
+paper glint, a yellow ring on the last disc played, and a status strip:
 left `MOVE 09 · RED TO PLAY` (or `GAME OVER · RED WINS` / `BLUE WINS` / `DRAW`), right `BOT ·
 NEGAMAX · DEPTH 9 · 0.8 S` from the last bot move. The two labels together stay under 56
 characters so they never read as one line (the embedded font has no Greek, so no α-β).
@@ -135,13 +136,20 @@ characters so they never read as one line (the embedded font has no Greek, so no
 Between `<!-- c4:start -->` and `<!-- c4:end -->` the workflow writes:
 
 ```
-<img src="game/board.svg?rev=42" alt="Connect Four, move 9, red to play" width="720">
+Red is you. Tap a column to drop.
 
-Red is you. Drop in a column:
-[**1**](issue link) · [**2**](…) · … · [**7**](…)
+<a href="issue link 1"><img src="assets/drop-1.svg" width="14%" alt="Drop in column 1"></a>…<a href="issue link 7"><img src="assets/drop-7.svg" width="14%" alt="Drop in column 7"></a>
+<img src="game/board-42.svg" alt="Connect Four, game 3, move 9, red to play" width="100%">
 
 Red to play · Last move by @octocat · Humans 3, bot 5, draws 1
 ```
+
+The seven drop buttons (`assets/drop-1.svg` to `drop-7.svg`, drawn by `comic/buttons.py`: a yellow
+chip, a Bangers digit with a red offset, a red down arrow, Bangers only so each stays near 32 KB)
+are the tap targets. They sit on one line with no whitespace between the anchors, in the same
+paragraph as the board, so the board renders directly under them at every viewport width. A plain
+image is not tappable on the GitHub mobile app, which is why the digits moved out of the board and
+into linked buttons (RON2K, 2026-09-17: "i can't even click on the game").
 
 When finished: `Red wins, game 7 · Next drop starts game 8 · Humans 4, bot 5, draws 1`. Below the
 region, one static line: `Pick a column, press Submit on the issue it opens, refresh in a minute.
