@@ -5,7 +5,8 @@ import json
 
 from . import draw as D
 
-W, PW, GAP, CHIP, PAD, ROWH = 880, 428, 24, 12, 11, 32
+W, GAP, CHIP, PAD, ROWH, SHADOW = 880, 24, 12, 11, 32, 6
+PW = (W - GAP - 2 - SHADOW) // 2        # two panels, origin offset 2, ink shadow inside the viewBox
 BANDS = {"red": (D.RED, D.PAPER), "blue": (D.BLUE, D.PAPER), "yellow": (D.YELLOW, D.INK), "ink": (D.INK, D.YELLOW)}
 
 

@@ -45,8 +45,9 @@ def build() -> str:
         "letter-spacing='.04em'>NOW WITH</text>"
         f"<text class='d' x='{CX}' y='{CY + 27}' font-size='44' text-anchor='middle' fill='{D.RED}' stroke='{D.INK}' "
         "stroke-width='1.2'>A GAME</text>"
-        f"<text class='m' x='{CX}' y='{CY + 50}' font-size='9' font-weight='500' text-anchor='middle' fill='{D.INK}' "
-        "letter-spacing='.14em'>SCROLL DOWN ▼</text></g>")
+        f"<text class='m' x='{CX - 6}' y='{CY + 50}' font-size='9' font-weight='500' text-anchor='middle' fill='{D.INK}' "
+        "letter-spacing='.14em'>SCROLL DOWN</text>"
+        f"<polygon points='{CX + 38},{CY + 43} {CX + 48},{CY + 43} {CX + 43},{CY + 51}' fill='{D.INK}'/></g>")
     return D.svg(W, H, LABEL, "".join(b), clip)
 
 
