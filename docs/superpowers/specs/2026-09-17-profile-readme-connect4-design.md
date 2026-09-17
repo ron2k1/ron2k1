@@ -87,6 +87,7 @@ the next red move.
   "record": {"humans": 0, "bot": 0, "draws": 0},
   "last_game": null,
   "movers": {"octocat": 1},
+  "hall": [],
   "revision": 1
 }
 ```
@@ -94,7 +95,8 @@ the next red move.
 `board` is top row first. `result` is `"R"`, `"B"`, or `"draw"` when finished. `revision`
 increments on every accepted move and is the cache-buster for the board image. `movers` counts
 accepted human moves per login for a most-moves line. `last_game` stores `{game_no, result,
-winning_move_by, moves}` for the previous game.
+winning_move_by, moves}` for the previous game. `hall` lists every human win in order as `{game_no, by,
+moves}`; the wall draws from it.
 
 ### A move
 
@@ -142,6 +144,8 @@ Red is you. Tap a column to drop.
 <img src="game/board-42.svg" alt="Connect Four, game 3, move 9, red to play" width="100%">
 
 Red to play · Last move by @octocat · Humans 3, bot 5, draws 1
+
+<img src="game/hall-42.svg" alt="Beat the bot: nobody yet. No game finished yet." width="100%">
 ```
 
 The seven drop buttons (`assets/drop-1.svg` to `drop-7.svg`, drawn by `comic/buttons.py`: a yellow
@@ -161,6 +165,13 @@ Cache-busting: the board is written as `game/board-<rev>.svg` and the previous r
 deleted in the same commit. A new path is the one cache key every layer (GitHub's raw redirect,
 its CDN, and the camo proxy) respects; a `?rev=N` query was rejected in review because the raw
 redirect can drop it.
+
+### The wall
+
+`connect4/hall.py` draws `game/hall-<rev>.svg` under the board: the latest five human wins with
+their all-time rank, a chip counting games since the last one (draws count), and a yellow star on
+rank 1. It says NOBODY YET. until someone wins, and `game.py` appends to `hall` when a red drop
+wins. Full design in `2026-09-17-beat-the-bot-wall-design.md`.
 
 ### Workflows
 
@@ -201,13 +212,13 @@ README.md
 assets/masthead.svg  assets/toolbelt.svg  assets/stats.svg
 comic/__init__.py  comic/draw.py  comic/masthead.py  comic/toolbelt.py  comic/stats.py
 connect4/__init__.py  connect4/engine.py  connect4/bot.py  connect4/render.py
-connect4/readme.py  connect4/__main__.py
+connect4/readme.py  connect4/__main__.py  connect4/hall.py
 data/toolbelt.json  data/stats.json
 docs/superpowers/specs/…  docs/superpowers/plans/…
 fonts/Bangers-Regular.woff2  fonts/JetBrainsMono.woff2  fonts/OFL-*.txt  fonts/README.md
-game/state.json  game/board.svg
+game/state.json  game/board-<rev>.svg  game/hall-<rev>.svg
 tests/test_engine.py  tests/test_bot.py  tests/test_render.py  tests/test_readme.py
-tests/test_comic.py
+tests/test_comic.py  tests/test_hall.py
 .github/workflows/connect4.yml  stats.yml  tests.yml
 ```
 

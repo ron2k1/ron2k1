@@ -55,3 +55,31 @@ def test_region_has_wall_image_after_status_line():
     s["revision"] = 7
     again = R.rewrite(out, s)
     assert 'src="game/hall-7.svg"' in again and "hall-0" not in again
+
+
+def test_live_readme_bot_cap_matches_budget():
+    import inspect
+    import re
+
+    from comic import draw as D
+    from connect4 import bot
+    from connect4.__main__ import _parser
+
+    after = re.sub(r"\s+", " ", (D.ROOT / "README.md").read_text(encoding="utf-8").split(R.END, 1)[1])
+    assert "I cap the bot at two seconds a move." in after
+    assert inspect.signature(bot.choose_move).parameters["budget"].default == 2.0
+    assert _parser().parse_args(["drain", "--outcomes", "x"]).budget == 2.0
+
+
+def test_live_page_has_no_dashes():
+    import xml.etree.ElementTree as ET
+
+    from comic import draw as D
+
+    bad = ("\u2014", "\u2013", "\u25cf")
+    assert not any(ch in (D.ROOT / "README.md").read_text(encoding="utf-8") for ch in bad)
+    for svg in list((D.ROOT / "assets").glob("*.svg")) + list((D.ROOT / "game").glob("*.svg")):
+        root = ET.fromstring(svg.read_text(encoding="utf-8"))
+        strings = ["".join(t.itertext()) for t in root.iter("{http://www.w3.org/2000/svg}text")]
+        strings.append(root.get("aria-label", ""))
+        assert not any(ch in s for s in strings for ch in bad), svg.name

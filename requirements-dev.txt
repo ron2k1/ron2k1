@@ -1,1 +1,2 @@
 pytest>=8
+fonttools[woff]>=4.62
