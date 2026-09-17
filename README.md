@@ -21,8 +21,8 @@ Pick a column, press Submit on the issue it opens, refresh in a minute. Engine i
 
 ### [claude-code-structured-concurrency](https://github.com/ron2k1/claude-code-structured-concurrency)
 
-Kills orphan Claude Code process trees at the kernel level on Windows, Linux, and macOS, so a
-dead session never leaves forty node processes behind.
+Kills orphan Claude Code process trees at the kernel level on Windows and Linux, with a watchdog
+on macOS, so a dead session never leaves forty node processes behind.
 
 `PowerShell` `bash` `Win32 Job Objects` `cgroups`
 
@@ -38,7 +38,7 @@ scrolls to it. Runs fully offline on a local model.
 NBA player-prop forecasting engine, in paper trading. Methodology and walk-forward results are in
 [courtside-showcase](https://github.com/ron2k1/courtside-showcase); the engine is private.
 
-`Python` `Rust` `XGBoost` `probability calibration`
+`Python` `XGBoost` `probability calibration`
 
 ## Hackathons
 
@@ -51,7 +51,7 @@ selection bias and label leakage. I owned the feature pipeline and the approval 
 
 `scikit-learn` `probability calibration` `causal inference` `survival analysis`
 
-### [StormLink](https://github.com/Purabhh/stormlink)
+### StormLink
 
 **Best Use of ElevenLabs · HackUSF 2026**
 
@@ -87,7 +87,7 @@ for their own tool calls over a real x402 USDC rail.
 
 <img src="assets/toolbelt.svg" alt="Languages: Python, Java, C++, TypeScript, JavaScript, Go, SQL, R, Rust, Bash, PowerShell. Frameworks and libraries: FastAPI, React, Next.js, Node.js, PyTorch, scikit-learn, XGBoost, LightGBM, pandas, NumPy, SciPy, statsmodels, LangChain, Hugging Face Transformers, Sentence Transformers. Developer tools and cloud: Git, GitHub Actions, CI/CD, Docker, Linux, AWS, Google Cloud, Railway, PostgreSQL, pgvector, SQLite, Redis, Supabase, pytest, REST APIs. Machine learning and data: RAG, semantic search, vector databases, agentic AI, multiagent systems, Google ADK, A2A, MCP, LLM finetuning, LoRA and PEFT, vLLM, TRL, bitsandbytes, prompt engineering, LLM evaluation, ETL, data pipelines, feature engineering, model calibration, time series validation." width="880">
 
-<img src="assets/stats.svg" alt="11 public repos, 1,796 contributions in the past year, 2 hackathon awards, 3 AI roles" width="880">
+<img src="assets/stats.svg" alt="Four counters: public repos, contributions in the past year, hackathon awards, AI roles. Refreshed nightly from the GitHub API." width="880">
 
 SIE certified, FINRA, Sep 2025.
 

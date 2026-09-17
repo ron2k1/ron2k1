@@ -148,19 +148,22 @@ Engine in [connect4/](connect4/).`
 
 Issue link: `https://github.com/ron2k1/ron2k1/issues/new?title=c4%7Cdrop%7C3&body=Press+Submit+new+issue.+The+bot+answers+here+within+a+minute.`
 
-Cache-busting: `?rev=N` on the relative path. Verified on the branch tree page before merge; if
-the query string is dropped by GitHub's rewrite, fall back to writing `game/board-<rev>.svg` and
-deleting the previous file in the same commit.
+Cache-busting: the board is written as `game/board-<rev>.svg` and the previous revision's file is
+deleted in the same commit. A new path is the one cache key every layer (GitHub's raw redirect,
+its CDN, and the camo proxy) respects; a `?rev=N` query was rejected in review because the raw
+redirect can drop it.
 
 ### Workflows
 
 - `.github/workflows/connect4.yml`: `on: issues: [opened]`, `permissions: {contents: write,
-  issues: write}`, `concurrency: {group: connect4, cancel-in-progress: false}`, ubuntu-latest,
-  `actions/checkout` on `main`, `actions/setup-python` 3.12, `python -m connect4 move --title
-  "$TITLE" --actor "$LOGIN" --issue "$NUM"` (a job condition on the title prefix skips unrelated
-  issues; the exact column regex is applied in Python, with the title passed through an
-  environment variable so untrusted text never reaches the shell), commit and push,
-  `gh issue close --comment`.
+  issues: write}`, a job condition on the title prefix so unrelated issues never enter the
+  job-level `concurrency: {group: connect4, cancel-in-progress: false}`, ubuntu-latest,
+  `actions/checkout` on `main`, `actions/setup-python` 3.12, then three steps:
+  `python -m connect4 drain --outcomes $RUNNER_TEMP/outcomes.json` (lists open move issues
+  through `gh`, applies each in number order, writes state, board and README, records one
+  outcome per issue), commit and push with an explicit success flag (the step fails if three
+  pushes fail), and `python -m connect4 close --outcomes ...` which closes each issue with its
+  result. Titles are matched in Python, never in a shell.
 - `.github/workflows/stats.yml`: `schedule: cron "17 6 * * *"` plus `workflow_dispatch`, runs
   `python -m comic.stats --token "$GITHUB_TOKEN"` and commits `assets/stats.svg` and
   `data/stats.json` only if changed.
@@ -171,8 +174,12 @@ Commits from `GITHUB_TOKEN` do not trigger other workflows, which is what we wan
 ### Abuse and failure
 
 - Only `issues.opened` with a matching title does anything; the job condition rejects the rest.
-- Two moves at once are serialized by the concurrency group; the second one sees the first's
-  state after checkout of the updated `main` (the job re-pulls before applying).
+- Simultaneous moves: the job-level concurrency group runs one move job at a time, but GitHub
+  keeps at most one run pending per group and evicts it when another arrives. So every run drains
+  all open move issues in number order (`gh issue list`, filtered by the title regex) instead of
+  serving only its own trigger; whichever run survives plays the evicted run's issue too.
+- Issues are closed only after the push succeeded. If the push fails three times the step fails,
+  the issues stay open, and the next run replays them from the state on `main`.
 - A bad column, a full column, or a race that made the move illegal closes the issue with one
   line and leaves the state untouched.
 - If the workflow is down the page still shows the last board and the links still work; issues
