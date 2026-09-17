@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-from connect4.render import render_board, status_text
+from connect4.render import W, column_center, render_board, status_text
 
 BASE = {"game_no": 3, "board": ["......." , "......." , "...R..." , "...B..." , "..RRB.." , ".BRBRB."],
         "to_play": "R", "moves": [{}] * 10, "finished": False, "result": None,
@@ -14,6 +14,13 @@ def test_board_has_42_holes_and_ring_on_last_move():
     assert "#ffc400" in s                         # yellow ring
     assert "MOVE 10 · RED TO PLAY" in s
     assert "DEPTH 9 · 0.8 S" in s
+
+
+def test_columns_line_up_with_the_button_row():
+    # The README draws seven 14%-wide drop buttons over a 100%-wide board, so each column's
+    # centre must sit within 10 px (of 720) of its button's centre.
+    for c in range(7):
+        assert abs(column_center(c) - W * (0.07 + 0.14 * c)) <= 10
 
 
 def test_status_when_finished():
