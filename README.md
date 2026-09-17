@@ -1,7 +1,7 @@
 <img src="assets/masthead.svg" alt="The Incredible Ronil Basu, Issue 27. Data science and AI, Rutgers 2027. Now with a game." width="880">
 
-Data science and statistics at Rutgers, class of 2027. I build things that run on my own hardware:
-local models, prediction engines, and tools I actually use.
+Data science and statistics at Rutgers, class of 2027. I build things that run on my own hardware,
+mostly local models and tools I actually use.
 
 [ron2k1.github.io](https://ron2k1.github.io) · [LinkedIn](https://www.linkedin.com/in/ronil-basu)
 
@@ -15,7 +15,8 @@ Red is you. Drop in a column: [**1**](https://github.com/ron2k1/ron2k1/issues/ne
 Red to play · Last move by @ron2k1 · Humans 0, bot 0, draws 0 · Most moves: @ron2k1 (1)
 <!-- c4:end -->
 
-Pick a column, press Submit on the issue it opens, refresh in a minute. Engine in [connect4/](connect4/).
+Pick a column and press Submit on the issue it opens. Give it a minute, then refresh. The engine is
+in [connect4/](connect4/).
 
 ## Hot off the press
 
@@ -36,7 +37,7 @@ scrolls to it. Runs fully offline on a local model.
 ### Courtside
 
 NBA player-prop forecasting engine, in paper trading. Methodology and walk-forward results are in
-[courtside-showcase](https://github.com/ron2k1/courtside-showcase); the engine is private.
+[courtside-showcase](https://github.com/ron2k1/courtside-showcase). The engine is private.
 
 `Python` `XGBoost` `probability calibration`
 
@@ -55,8 +56,8 @@ selection bias and label leakage. I owned the feature pipeline and the approval 
 
 **Best Use of ElevenLabs · HackUSF 2026**
 
-Live storm data routed through Google ADK agents into voice alerts for people in the path. I built
-the panel that shows the agents working.
+We routed live storm data through Google ADK agents into voice alerts for people in the path. I
+built the panel that shows the agents working.
 
 `Google ADK` `ElevenLabs` `Next.js` `FastAPI` `Leaflet`
 
@@ -93,11 +94,15 @@ SIE certified, FINRA, Sep 2025.
 
 ## Building in private
 
-**InternPilot.** Scrapes 13 job sources, scores postings against my resume, fills ATS forms with
-Playwright, and drafts cover letters on a local LLM.
+### InternPilot
 
-**nemotron-reasoning-challenge.** A daemon that generates math reasoning data, fine-tunes with
-QLoRA and GRPO, evaluates on vLLM, and submits to Kaggle on its own.
+Scrapes 13 job sources, scores postings against my resume, fills ATS forms with Playwright, and
+drafts cover letters on a local LLM.
+
+### nemotron-reasoning-challenge
+
+A daemon that generates math reasoning data, fine-tunes with QLoRA and GRPO, evaluates on vLLM,
+and submits to Kaggle on its own.
 
 ## Say hi
 
