@@ -36,15 +36,19 @@ def test_spines_stand_on_one_line_each_linked_to_its_repo():
 
 
 def test_index_names_every_spine_in_shelf_order():
-    index = re.findall(r"^\[([^\]]+)\]\((https://github\.com/ron2k1/[^)]+)\) · \S", README, flags=re.M)
+    index = re.findall(r"^\[([^\]]+)\]\((https://github\.com/ron2k1/[^)]+)\) · \S.*$", README, flags=re.M)
     assert [url for _, url in index] == [REPO_URL + s.repo for s in SH.SPINES]
+    lines = re.findall(r"^\[[^\]]+\]\(https://github\.com/ron2k1/[^)]+\) · .*$", README, flags=re.M)
+    # GitHub joins soft line breaks into one paragraph, so every line but the last needs its <br>.
+    assert [ln.endswith("<br>") for ln in lines] == [True] * (len(SH.SPINES) - 1) + [False]
 
 
 def test_snake_sources_match_what_the_workflow_writes():
     assert f'<source media="(prefers-color-scheme: dark)" srcset="{OUTPUT}github-snake-dark.svg">' in README
     assert f'<source media="(prefers-color-scheme: light)" srcset="{OUTPUT}github-snake.svg">' in README
     assert f'src="{OUTPUT}github-snake.svg"' in README
-    snake = "%23" + SH.SPINES[0].fill[1:]          # the snake is the marginalia spine's purple
+    marginalia = next(s for s in SH.SPINES if s.key == "marginalia")
+    snake = "%23" + marginalia.fill[1:]          # the snake is the marginalia spine's purple
     assert f"dist/github-snake.svg?palette=github-light&color_snake={snake}" in SNAKE
     assert f"dist/github-snake-dark.svg?palette=github-dark&color_snake={snake}" in SNAKE
     assert "target_branch: output" in SNAKE and "contents: write" in SNAKE
@@ -57,14 +61,18 @@ def test_snake_actions_are_pinned_to_commit_shas():
 
 def test_no_template_chrome():
     for banned in ("shields.io", "capsule-render", "komarev", "github-readme-stats", "readme-typing-svg",
-                   "skillicons", 'align="center"', "<table", "<div"):
+                   "skillicons", "<table", "<div"):
         assert banned not in README, banned
+    assert not re.search(r"align\s*=\s*[\"']?center", README, flags=re.I)
+    assert not re.search(r"^\s*\|.*\|\s*$", README, flags=re.M), "markdown tables are chrome too"
 
 
 def test_prose_reads_like_a_person_wrote_it():
-    text = prose()
-    for banned in ("—", "–", ";", "**", " -- "):
-        assert banned not in text, repr(banned)
+    alts = re.findall(r'alt="([^"]*)"', README)
+    for text in (prose(), *alts):
+        for banned in ("—", "–", "&mdash;", "&ndash;", ";", "**", "__", " -- "):
+            assert banned not in text, (banned, text[:60])
+    assert not re.search(r"<(b|strong)\b", README, flags=re.I), "no bold in prose"
 
 
 def test_the_old_game_and_comic_page_are_gone():
@@ -72,4 +80,6 @@ def test_the_old_game_and_comic_page_are_gone():
     workflows = sorted(p.name for p in (ROOT / ".github" / "workflows").glob("*.yml"))
     assert workflows == ["snake.yml", "tests.yml"]
     for gone in ("comic", "connect4", "game", "data"):
-        assert not (ROOT / gone).exists(), gone
+        # git leaves ignored __pycache__ folders behind on checkout, so only real files count
+        left = [f for f in (ROOT / gone).rglob("*") if f.is_file() and "__pycache__" not in f.parts]
+        assert not left, left[:3]
