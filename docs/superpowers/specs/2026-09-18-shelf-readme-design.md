@@ -1,7 +1,7 @@
 # Shelf README design
 
 Date: 2026-09-18. Replaces the comic-issue README and its Connect Four game
-(`2026-09-17-profile-readme-connect4-design.md`, removed in the same change; it stays in git history).
+(`2026-09-17-profile-readme-connect4-design.md`, removed in the same change and kept in git history).
 
 ## The ask
 
@@ -61,32 +61,42 @@ OFL 1.1, subset to A to Z with the name table kept). Letters are outlined to `<p
 so the files carry no `<text>`, `<style>`, script, embedded font, or external reference and render the
 same on every OS.
 
-Per file: canvas `(W + 4) x 171`, spine body at x 2 to W + 2, n letters, `H = 12n + 36`, top
+Per file: canvas `(W + 2) x 171`, spine body at x 1 to W + 1, n letters, `H = 12n + 36`, top
 `T = 168 - H`. Body rect inset 0.75 with rx 2, fill F, stroke S 1.5. Bands of height 2 at `T + 6` and
 `T + H - 8`, fill S. Letters Inter Bold 11 px, advance box centred on the spine, baselines
-`T + 28 + 12i`. Plank rect `x 0, y 168, width W + 4, height 3`, fill #8c959f (3.0:1 on white, 6.2:1 on
-#0d1117), so adjacent files join into one plank.
+`T + 28 + 12i`. Plank rect `x 0, y 168, width W + 2, height 3`, fill #8c959f (3.0:1 on white, 6.2:1 on
+#0d1117), so adjacent files continue one plank.
+
+At 1x, 2x and 3x the plank joins cleanly. At fractional pixel ratios (Windows 125 and 150 percent,
+most Android phones) the browser can leave a one-device-pixel hairline at each joint, because each
+spine has to be its own linked image and no markup controls how two images meet. Dark end caps and
+split boards were rendered at 1.25, 1.5 and 2.625 and read worse at every ratio, so the plain plank
+stays.
 
 | Key | Label | W | Fill | Stroke and bands | Letters | Links to |
 | --- | --- | --- | --- | --- | --- | --- |
-| marginalia | MARGINALIA | 52 | #a466d9 | #6f3fa6 | #1a0b2e | marginalia |
-| concurrency | CONCURRENCY | 46 | #216e39 | #0e4429 | #ffffff | claude-code-structured-concurrency |
-| crash | CRASH | 42 | #9be9a8 | #30a14e | #04260f | crash-app |
-| cluely | CLUELY | 46 | #40c463 | #216e39 | #04260f | Ronils-Cluely-OPENSOURCE |
-| spotify | SPOTIFY | 52 | #30a14e | #216e39 | #04260f | spotify-cleaner |
-| courtside | COURTSIDE | 42 | #9be9a8 | #30a14e | #04260f | courtside-showcase |
+| marginalia | MARGINALIA | 40 | #a466d9 | #6f3fa6 | #1a0b2e | marginalia |
+| concurrency | CONCURRENCY | 36 | #216e39 | #0e4429 | #ffffff | claude-code-structured-concurrency |
+| crash | CRASH | 33 | #9be9a8 | #30a14e | #04260f | crash-app |
+| cluely | CLUELY | 36 | #40c463 | #216e39 | #04260f | Ronils-Cluely-OPENSOURCE |
+| spotify | SPOTIFY | 40 | #30a14e | #216e39 | #04260f | spotify-cleaner |
+| courtside | COURTSIDE | 33 | #9be9a8 | #30a14e | #04260f | courtside-showcase |
 
-The greens are GitHub's contribution levels and the purple is the avatar's, which is also the snake's
-colour, so the shelf and the grid under it read as one piece. Row width is 304 px, under the roughly
-324 px content column on a 390 px phone. Every letter colour clears 4.5:1 on its fill.
+The greens are GitHub's light-mode contribution levels, so in dark mode they stand out as bright books
+over the darker grid. The purple is the avatar's, which is also the snake's colour. On github.com/ron2k1
+the README column is the viewport minus 82 px (238 px on a 320 px phone, 278 on 360, 308 on 390), so
+the six canvases add up to 230 px and the row stays on one shelf on any phone. The repo's own page gives
+the README 16 px more, so phone checks run on the profile layout. Every letter colour clears 4.5:1 on
+its fill.
 
 ## The snake
 
 `.github/workflows/snake.yml`: daily cron, `workflow_dispatch`, and a push trigger on `main` limited to
-the workflow file. `Platane/snk/svg-only@v3` writes `github-snake.svg` (palette github-light) and
+the workflow file. `Platane/snk/svg-only` writes `github-snake.svg` (palette github-light) and
 `github-snake-dark.svg` (palette github-dark), both with `color_snake=%23a466d9`, and
-`crazy-max/ghaction-github-pages@v5` pushes them to the `output` branch. The job asks for
-`contents: write` because the repo default token is read-only. The `output` branch was deleted with the
+`crazy-max/ghaction-github-pages` pushes them to the `output` branch. The job asks for
+`contents: write` because the repo default token is read-only. Because it holds a write token, both
+actions are pinned to commit SHAs, v3.5.0 at d8f6715 and v5.0.0 at 1d6ee9b, not to movable tags. The `output` branch was deleted with the
 old snake, so the workflow must run once before the README can show it.
 
 ## Removed
@@ -100,14 +110,21 @@ new tests.
 ## Tests
 
 `tests/test_shelf.py`: committed spines equal the generator's output byte for byte and there are
-exactly six; each file parses, has viewBox `0 0 W+4 171`, one path per letter, and no text, style,
-script, foreignObject or href; letter contrast is at least 4.5:1; the row is at most 308 px wide.
+exactly six. Each file parses, has viewBox `0 0 W+2 171`, one path per letter, and no text, style,
+script, foreignObject or href. Letters sit inside the spine and between the bands, letter contrast is
+at least 4.5:1, the plank runs edge to edge at 3:1 or better on both themes, and the row is at most
+238 px wide.
 
-`tests/test_readme.py`: every relative image exists; the six spines appear in order on one line, each
-linked to its repo; the snake sources match what snake.yml writes; no banned chrome; no em or en dashes
-and no semicolons in the prose; snake.yml carries the palettes, colour, branch and permission above.
+`tests/test_readme.py`: every relative image exists. The six spines appear in order on one line with
+no whitespace between anchors, each linked to its repo. The index names them in the same order and
+every line but the last ends in `<br>`. The snake sources match what snake.yml writes, the snake colour
+is the marginalia spine's fill, and both actions are pinned to 40-character SHAs. No banned chrome,
+including markdown tables and any spelling of `align=center`. No em or en dashes, semicolons or bold
+(`**`, `__`, `<b>`, `<strong>`) in the prose or the alt text. The old page's folders hold no files
+besides ignored `__pycache__` leftovers.
 
 ## Verification
 
 GitHub's renderer (`gh api markdown`) plus Playwright at 1280 and 390 px in light and dark, the live
-branch page on github.com, a green snake run with the `output` branch present, and ZeroGPT on the prose.
+branch page on github.com, the branch's rendered README inside the profile layout at 320, 360, 375 and
+390 px, a green snake run with the `output` branch present, and ZeroGPT on the prose.
