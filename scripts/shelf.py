@@ -1,8 +1,10 @@
 """Draw the six book spines in assets/shelf/ for the profile README.
 
 Each spine is its own SVG so the README can wrap each one in its own link. Every file is 171 px tall
-and carries its slice of the plank, so the six images stand on one shared baseline and the plank
-reads as one piece. The letters are Inter Bold outlined to paths, so the files look the same on any
+and carries its slice of the plank, so the six images stand on one shared baseline and the plank runs
+under the whole row. At 1x, 2x and 3x it joins cleanly. At fractional pixel ratios the browser can
+leave a one-device-pixel hairline where two images meet, which no markup can prevent while each spine
+is its own link. The letters are Inter Bold outlined to paths, so the files look the same on any
 machine and carry no fonts, styles, or external references.
 
 Run from the repo root: python scripts/shelf.py
@@ -23,7 +25,7 @@ FONT = ROOT / "fonts" / "Inter-Bold-caps.ttf"
 OUT = ROOT / "assets" / "shelf"
 
 CANVAS_H, BASE = 171, 168      # every file is this tall and every spine stands on y = BASE
-MARGIN = 2                     # each file pads its spine 2 px per side, so neighbours sit 4 px apart
+MARGIN = 1                     # each file pads its spine 1 px per side, so neighbours sit 2 px apart
 SIZE, PITCH = 11, 12           # letter size and baseline step in px
 FIRST_BASELINE = 28            # from the spine's top edge
 PLANK = "#8c959f"              # 3.0:1 on GitHub's light background, 6.2:1 on its dark one
@@ -39,14 +41,15 @@ class Spine(NamedTuple):
     repo: str
 
 
-# Greens are GitHub's contribution levels and the purple is the avatar's, the same as the snake.
+# Greens are GitHub's light-mode contribution levels. The purple is the avatar's, the same as the snake.
+# The six canvases add up to 230 px so the row fits the profile page's 238 px column on a 320 px phone.
 SPINES = (
-    Spine("marginalia", "MARGINALIA", 52, "#a466d9", "#6f3fa6", "#1a0b2e", "marginalia"),
-    Spine("concurrency", "CONCURRENCY", 46, "#216e39", "#0e4429", "#ffffff", "claude-code-structured-concurrency"),
-    Spine("crash", "CRASH", 42, "#9be9a8", "#30a14e", "#04260f", "crash-app"),
-    Spine("cluely", "CLUELY", 46, "#40c463", "#216e39", "#04260f", "Ronils-Cluely-OPENSOURCE"),
-    Spine("spotify", "SPOTIFY", 52, "#30a14e", "#216e39", "#04260f", "spotify-cleaner"),
-    Spine("courtside", "COURTSIDE", 42, "#9be9a8", "#30a14e", "#04260f", "courtside-showcase"),
+    Spine("marginalia", "MARGINALIA", 40, "#a466d9", "#6f3fa6", "#1a0b2e", "marginalia"),
+    Spine("concurrency", "CONCURRENCY", 36, "#216e39", "#0e4429", "#ffffff", "claude-code-structured-concurrency"),
+    Spine("crash", "CRASH", 33, "#9be9a8", "#30a14e", "#04260f", "crash-app"),
+    Spine("cluely", "CLUELY", 36, "#40c463", "#216e39", "#04260f", "Ronils-Cluely-OPENSOURCE"),
+    Spine("spotify", "SPOTIFY", 40, "#30a14e", "#216e39", "#04260f", "spotify-cleaner"),
+    Spine("courtside", "COURTSIDE", 33, "#9be9a8", "#30a14e", "#04260f", "courtside-showcase"),
 )
 
 

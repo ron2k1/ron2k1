@@ -32,8 +32,8 @@ def test_committed_spines_match_the_generator():
 def test_spine_is_plain_shapes_with_one_path_per_letter(spine):
     svg = SH.render(spine)
     root = ET.fromstring(svg)
-    assert root.get("viewBox") == f"0 0 {spine.width + 4} 171"
-    assert root.get("width") == str(spine.width + 4) and root.get("height") == "171"
+    assert root.get("viewBox") == f"0 0 {spine.width + 2} 171"
+    assert root.get("width") == str(spine.width + 2) and root.get("height") == "171"
     assert {el.tag.replace(NS, "") for el in root.iter()} <= {"svg", "rect", "path"}
     assert len(root.findall(f"{NS}path")) == len(spine.label)
     for banned in ("href", "<text", "<style", "<script", "@font-face", "url("):
@@ -44,18 +44,20 @@ def test_spine_is_plain_shapes_with_one_path_per_letter(spine):
 def test_letters_sit_between_the_bands_and_read_clearly(spine):
     top = 168 - SH.height(spine)
     for x0, y0, x1, y1 in SH.letter_bounds(spine):
-        assert 2 + 1.5 < x0 and x1 < 2 + spine.width - 1.5
+        assert 1 + 1.5 < x0 and x1 < 1 + spine.width - 1.5
         assert top + 8 < y0 and y1 < top + SH.height(spine) - 8
     assert contrast(spine.ink, spine.fill) >= 4.5
 
 
 def test_shelf_fits_a_phone_and_every_spine_fits_its_canvas():
-    assert sum(s.width + 4 for s in SH.SPINES) <= 308
+    # On github.com/ron2k1 the README column is the viewport minus 82 px, so 238 px on a 320 px phone.
+    # Wider than that and the last spines wrap onto a second shelf.
+    assert sum(s.width + 2 for s in SH.SPINES) <= 238
     assert all(SH.height(s) <= 168 for s in SH.SPINES)
     assert len({s.key for s in SH.SPINES}) == len(SH.SPINES)
 
 
 @pytest.mark.parametrize("spine", SH.SPINES, ids=lambda s: s.key)
 def test_plank_runs_edge_to_edge_so_neighbours_join(spine):
-    assert f'<rect x="0" y="168" width="{spine.width + 4}" height="3" fill="{SH.PLANK}"/>' in SH.render(spine)
+    assert f'<rect x="0" y="168" width="{spine.width + 2}" height="3" fill="{SH.PLANK}"/>' in SH.render(spine)
     assert contrast(SH.PLANK, "#ffffff") >= 3 and contrast(SH.PLANK, "#0d1117") >= 3
