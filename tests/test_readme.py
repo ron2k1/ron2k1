@@ -1,40 +1,75 @@
-import pytest
+"""The profile README: the shelf, the snake under it, the index, and the few sentences around them."""
+import pathlib
+import re
 
-from connect4 import game as G
-from connect4 import readme as R
+from scripts import shelf as SH
 
-DOC = "# hi\n\n<!-- c4:start -->\nold\n<!-- c4:end -->\n\nfooter\n"
-
-
-def test_rewrite_replaces_only_the_region():
-    s = G.new_state()
-    out = R.rewrite(DOC, s)
-    assert out.startswith("# hi\n\n<!-- c4:start -->\n") and out.endswith("<!-- c4:end -->\n\nfooter\n")
-    assert "old" not in out
-    assert 'src="game/board-0.svg"' in out
-    assert R.rewrite(out, s) == out           # idempotent
-    s["revision"] = 7
-    assert 'src="game/board-7.svg"' in R.rewrite(out, s)
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+README = (ROOT / "README.md").read_text(encoding="utf-8")
+SNAKE = (ROOT / ".github" / "workflows" / "snake.yml").read_text(encoding="utf-8")
+OUTPUT = "https://raw.githubusercontent.com/ron2k1/ron2k1/output/"
+REPO_URL = "https://github.com/ron2k1/"
 
 
-def test_links_and_status_lines():
-    s = G.new_state()
-    s["movers"] = {"octocat": 3, "hubot": 5}
-    s["moves"] = [{"col": 3, "by": "octocat", "issue": 1, "actor": "R"}]
-    s["to_play"] = "B"
-    r = R.region(s)
-    assert r.count("issues/new?title=c4%7Cdrop%7C") == 7
-    assert "Bot is thinking" in r
-    assert "@octocat" in r and "Humans 0, bot 0, draws 0" in r
-    assert "@hubot (5)" in r
+def prose():
+    """README text a reader sees: tags and link targets removed."""
+    text = re.sub(r"<[^>]+>", " ", README)
+    return re.sub(r"\]\([^)]*\)", "]", text)
 
 
-def test_finished_line():
-    s = G.new_state()
-    s.update(finished=True, result="B", game_no=7, moves=[{}] * 10)
-    assert "Blue wins game 7" in R.region(s) and "starts game 8" in R.region(s)
+def test_every_local_image_exists():
+    srcs = re.findall(r'src(?:set)?="([^"]+)"', README)
+    local = [s for s in srcs if not s.startswith("https://")]
+    assert len(local) == len(SH.SPINES)
+    for s in local:
+        assert (ROOT / s).is_file(), s
 
 
-def test_missing_markers_raises():
-    with pytest.raises(ValueError):
-        R.rewrite("no markers", G.new_state())
+def test_spines_stand_on_one_line_each_linked_to_its_repo():
+    lines = [ln for ln in README.splitlines() if "assets/shelf/" in ln]
+    assert len(lines) == 1, "the spines must share one source line or GitHub breaks the row"
+    anchors = re.findall(r'<a href="([^"]+)"><img src="(assets/shelf/[^"]+)" alt="([^"]+)"></a>', lines[0])
+    assert [(href, src) for href, src, _ in anchors] == [
+        (REPO_URL + s.repo, f"assets/shelf/{s.key}.svg") for s in SH.SPINES]
+    glued = "".join(f'<a href="{h}"><img src="{s}" alt="{a}"></a>' for h, s, a in anchors)
+    assert glued in lines[0], "no whitespace between the anchors, or the spines drift apart"
+
+
+def test_index_names_every_spine_in_shelf_order():
+    index = re.findall(r"^\[([^\]]+)\]\((https://github\.com/ron2k1/[^)]+)\) · \S", README, flags=re.M)
+    assert [url for _, url in index] == [REPO_URL + s.repo for s in SH.SPINES]
+
+
+def test_snake_sources_match_what_the_workflow_writes():
+    assert f'<source media="(prefers-color-scheme: dark)" srcset="{OUTPUT}github-snake-dark.svg">' in README
+    assert f'<source media="(prefers-color-scheme: light)" srcset="{OUTPUT}github-snake.svg">' in README
+    assert f'src="{OUTPUT}github-snake.svg"' in README
+    snake = "%23" + SH.SPINES[0].fill[1:]          # the snake is the marginalia spine's purple
+    assert f"dist/github-snake.svg?palette=github-light&color_snake={snake}" in SNAKE
+    assert f"dist/github-snake-dark.svg?palette=github-dark&color_snake={snake}" in SNAKE
+    assert "target_branch: output" in SNAKE and "contents: write" in SNAKE
+
+
+def test_snake_actions_are_pinned_to_commit_shas():
+    uses = re.findall(r"uses: (\S+)", SNAKE)
+    assert uses and all(re.fullmatch(r"[\w.-]+/[\w./-]+@[0-9a-f]{40}", u) for u in uses), uses
+
+
+def test_no_template_chrome():
+    for banned in ("shields.io", "capsule-render", "komarev", "github-readme-stats", "readme-typing-svg",
+                   "skillicons", 'align="center"', "<table", "<div"):
+        assert banned not in README, banned
+
+
+def test_prose_reads_like_a_person_wrote_it():
+    text = prose()
+    for banned in ("—", "–", ";", "**", " -- "):
+        assert banned not in text, repr(banned)
+
+
+def test_the_old_game_and_comic_page_are_gone():
+    assert not re.search(r"c4:start|connect4|game/|masthead|toolbelt", README)
+    workflows = sorted(p.name for p in (ROOT / ".github" / "workflows").glob("*.yml"))
+    assert workflows == ["snake.yml", "tests.yml"]
+    for gone in ("comic", "connect4", "game", "data"):
+        assert not (ROOT / gone).exists(), gone
