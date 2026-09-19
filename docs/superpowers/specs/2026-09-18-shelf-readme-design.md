@@ -42,14 +42,14 @@ the repo's sources). Exhibit put a 70 px tall snake first on a phone.
 
 ## The page
 
-1. One sentence: Rutgers data science and statistics, class of 2027, "slightly overbuilt things that run
-   on my own hardware".
+1. One sentence: Rutgers data science and statistics, class of 2027. RON2K cut the "slightly overbuilt
+   things that run on my own hardware" clause on 2026-09-19.
 2. The shelf: six spine images on one source line with no whitespace between anchors, each wrapped in a
    link to its repo. Inline images share a baseline, so the spines stand on one plank.
 3. The snake in a `<picture>` with dark and light sources from the `output` branch.
 4. A flush-left index, one line per spine: repo link, a middle dot, what it does. Lines end in `<br>`.
-5. One paragraph on the two hackathons, in the team "we".
-6. A `----` rule and the contact line: "LinkedIn is fastest. The longer story is at ron2k1.github.io."
+5. One paragraph on the two hackathons, in the team "we". The page ends there. RON2K removed the rule and
+   contact line on 2026-09-19, and the profile sidebar already links LinkedIn and ron2k1.github.io.
 
 Every factual line comes from the previous README or `gh repo view`. All seven linked repos are public
 (checked 2026-09-18).
