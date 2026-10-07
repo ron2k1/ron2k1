@@ -118,6 +118,13 @@ def title_region(b: Book) -> tuple[float, float]:
     return top(b) + 34, sticker_box(b)[1] - 14
 
 
+def bands(b: Book) -> tuple[tuple[float, float], ...]:
+    """The (y, height) of every foil band render() draws: the head bands, then the tail band last."""
+    t, sy = top(b), sticker_box(b)[1]
+    head = ((t + 12, 11),) if b.key == HAZARD_KEY else ((t + 12, 2.2), (t + 18, 1.2))
+    return head + ((sy - 9, 1.2),)
+
+
 def _advance(text: str, scale: float, size: float) -> float:
     font = _font(TITLE_FONT)
     glyphs, cmap = font.getGlyphSet(), font.getBestCmap()
@@ -241,12 +248,12 @@ def render(b: Book) -> str:
     parts = [_defs(),
              f'<rect x="{_num(GAP)}" y="{_num(t)}" width="{_num(bw)}" height="{b.height}" rx="2.5" fill="{b.cloth}"/>',
              f'<rect x="{_num(GAP)}" y="{_num(t)}" width="{_num(bw)}" height="{b.height}" rx="2.5" fill="url(#r)"/>']
+    *head, (tail_y, tail_h) = bands(b)
     if b.key == HAZARD_KEY:
-        parts.append(_hazard_band(b, t + 12, 11))
+        parts.append(_hazard_band(b, *head[0]))
     else:
-        parts += [_band(GAP + inset, t + 12, bw - 2 * inset, 2.2, b.foil),
-                  _band(GAP + inset, t + 18, bw - 2 * inset, 1.2, b.foil)]
-    parts.append(_band(GAP + inset, sy - 9, bw - 2 * inset, 1.2, b.foil))
+        parts += [_band(GAP + inset, y, bw - 2 * inset, h, b.foil) for y, h in head]
+    parts.append(_band(GAP + inset, tail_y, bw - 2 * inset, tail_h, b.foil))
     parts.append(_paths(_title_glyphs(b), TITLE_FONT, b.foil))
     parts.append(f'<rect x="{_num(sx)}" y="{_num(sy)}" width="{_num(sw)}" height="{_num(sh)}" rx="2" '
                  f'fill="{STICKER}" stroke="#000" stroke-opacity=".22" stroke-width=".8"/>')
@@ -257,39 +264,46 @@ def render(b: Book) -> str:
     return _svg(w, b.alt, parts)
 
 
-def _lying_title(book: Lying, y_mid: float) -> str:
+def lying_top(book: Lying) -> float:
+    """The top edge of a lying book's cover. LYING is stacked bottom to top on the plank."""
+    return FLOOR - sum(x.height for x in LYING[:LYING.index(book) + 1])
+
+
+def _lying_glyphs(book: Lying):
+    """Yield each glyph of a lying book's title, upright and centred on the cover."""
     font = _font(TITLE_FONT)
     glyphs, cmap = font.getGlyphSet(), font.getBestCmap()
     size = book.height * 0.44
     s = size / font["head"].unitsPerEm
     cap = font["OS/2"].sCapHeight * s
-    run = _advance(book.title, s, size)
-    x = book.x + (book.width - run) / 2
-    placed = []
+    baseline = lying_top(book) + book.height / 2 + cap / 2
+    x = book.x + (book.width - _advance(book.title, s, size)) / 2
     for ch in book.title:
         g = glyphs[cmap[ord(ch)]]
-        placed.append((g, (s, 0, 0, -s, x, y_mid + cap / 2)))
+        yield g, (s, 0, 0, -s, x, baseline)
         x += g.width * s + TRACKING * size
-    return _paths(placed, TITLE_FONT, book.foil)
+
+
+def lying_title_bounds(book: Lying):
+    return _bounds(_lying_glyphs(book), TITLE_FONT)
 
 
 def render_end() -> str:
     """The bookend against the last book, then two textbooks lying on their side."""
-    parts = [_defs()]
+    parts = []
     # A plain iron bookend: a slab with a quarter-round top, 150 units tall.
     parts.append(f'<path d="M{GAP} {FLOOR}V{FLOOR - 120}A30 30 0 0 1 {GAP + 30} {FLOOR - 150}H{GAP + 40}V{FLOOR}Z" '
                  f'fill="{BOOKEND}"/>')
     parts.append(f'<rect x="{GAP + 34}" y="{FLOOR - 150}" width="6" height="150" fill="#fff" fill-opacity=".08"/>')
-    y = FLOOR
     for book in LYING:
-        y -= book.height
+        y = lying_top(book)
         parts.append(f'<rect x="{_num(book.x)}" y="{_num(y)}" width="{_num(book.width)}" height="{_num(book.height)}" '
                      f'rx="2.5" fill="{book.cloth}"/>')
         parts.append(f'<rect x="{_num(book.x + 10)}" y="{_num(y + 3)}" width="1.6" height="{_num(book.height - 6)}" '
                      f'fill="{book.foil}"/>')
         parts.append(f'<rect x="{_num(book.x + book.width - 11.6)}" y="{_num(y + 3)}" width="1.6" '
                      f'height="{_num(book.height - 6)}" fill="{book.foil}"/>')
-        parts.append(_lying_title(book, y + book.height / 2))
+        parts.append(_paths(_lying_glyphs(book), TITLE_FONT, book.foil))
         parts.append(f'<rect x="{_num(book.x + .5)}" y="{_num(y + .5)}" width="{_num(book.width - 1)}" '
                      f'height="{_num(book.height - 1)}" rx="2.5" fill="none" stroke="{OUTLINE}" stroke-opacity=".55"/>')
     parts.append(_plank(END_WIDTH))

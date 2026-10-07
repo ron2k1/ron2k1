@@ -46,6 +46,10 @@ def test_every_file_is_plain_shapes_with_no_fonts_or_outside_references(name):
         assert banned not in svg, banned
     assert re.findall(r"https?://[^\"']+", svg) == ["http://www.w3.org/2000/svg"]
     assert all(ref.startswith("#") for ref in re.findall(r"url\(([^)]*)\)", svg))
+    # Every reference resolves inside the file, and nothing is defined that no shape uses.
+    ids = re.findall(r'\bid="([^"]+)"', svg)
+    assert len(ids) == len(set(ids))
+    assert set(re.findall(r"url\(#([^)]*)\)", svg)) == set(ids)
 
 
 @pytest.mark.parametrize("book", SH.BOOKS, ids=lambda b: b.key)
@@ -56,17 +60,35 @@ def test_title_stays_on_the_spine_between_the_bands(book):
     for x0, y0, x1, y1 in bounds:
         assert SH.GAP + 4 < x0 and x1 < book.width - SH.GAP - 4
         assert lo - 0.5 <= y0 and y1 <= hi + 0.5
+    # Checked against the bands render() draws, so moving a band onto the title fails here.
+    *head, (tail_y, tail_h) = SH.bands(book)
+    assert max(y + h for y, h in head) < min(b[1] for b in bounds)
+    assert max(b[3] for b in bounds) < tail_y
+    assert tail_y + tail_h < SH.sticker_box(book)[1]
     assert contrast(book.foil, book.cloth) >= 3       # large text: WCAG AA asks 3:1
 
 
 @pytest.mark.parametrize("book", SH.BOOKS, ids=lambda b: b.key)
 def test_call_number_is_typed_inside_its_sticker(book):
     sx, sy, sw, sh = SH.sticker_box(book)
-    for x0, y0, x1, y1 in SH.label_bounds(book):
+    bounds = SH.label_bounds(book)
+    assert len(bounds) == sum(len(line) for line in book.call)
+    for x0, y0, x1, y1 in bounds:
         assert sx + 1 < x0 and x1 < sx + sw - 1
         assert sy + 1 < y0 and y1 < sy + sh - 1
-    assert sy - 14 >= SH.title_region(book)[1] - 0.01
     assert contrast(SH.STICKER_INK, SH.STICKER) >= 7
+
+
+@pytest.mark.parametrize("book", SH.LYING, ids=lambda b: b.title)
+def test_lying_titles_sit_inside_their_covers_between_the_foil_rules(book):
+    y = SH.lying_top(book)
+    bounds = SH.lying_title_bounds(book)
+    assert len(bounds) == len(book.title.replace(" ", ""))
+    for x0, y0, x1, y1 in bounds:
+        assert book.x + 12 < x0 and x1 < book.x + book.width - 12
+        assert y + 2 < y0 and y1 < y + book.height - 2
+    assert SH.GAP + 40 < book.x and book.x + book.width < SH.END_WIDTH - SH.GAP
+    assert contrast(book.foil, book.cloth) >= 3
 
 
 def test_books_are_shelved_in_call_number_order_with_the_author_cutter_last():
