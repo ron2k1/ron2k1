@@ -21,8 +21,11 @@ with the portfolio's comic identity. This design takes it further, to a real lib
    Rutgers statistics department, grading model outputs for a frontier AI lab through Mercor (never the
    lab's name), and AI engineering at CodePath. The second sentence is the professional half of the ask
    and the easiest line to cut.
-2. The shelf, full column width: seven cloth-bound books, each its own linked image, then one unlinked
-   image with a bookend and two textbooks lying flat (Statistics, Data Science).
+2. The shelf, full column width: seven cloth-bound books, each its own linked image, then one image with
+   a bookend and two textbooks lying flat (Statistics, Data Science). The README gives that image no
+   link, but GitHub wraps every image outside a link in one to the file itself, so clicking the bookend
+   opens `end.svg`. An empty `<a>` does not stop it (tested 2026-10-07: GitHub fills in the href), and
+   the row is unaffected because the wrapper adds no whitespace.
 3. The catalog: one line per book, in shelf order. A call number in inline code, padded to one width so
    the links form a column, then the repo link, a middle dot, and what it does. Every line fits on one
    line at the desktop column.
