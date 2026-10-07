@@ -9,7 +9,7 @@ RON2K, 2026-10-07: "make the github readme more aesthetically pleasing ... adjus
 professional and artsy", in the same request that added HazardCam (NVIDIA x Dell hackathon, October
 2026) to ron2k1.github.io.
 
-The 2026-09-18 page sat its six spines in a 230 px block at the top left of an 838 px column, so on
+The 2026-09-18 page sat its six spines in a 230 px block at the top left of an 846 px column, so on
 desktop most of the first screen was empty, and the snake under it was the only full-width element.
 The bookshelf idea stays, because it is the part of the page nobody else has and it shares nothing
 with the portfolio's comic identity. This design takes it further, to a real library.
@@ -54,8 +54,8 @@ against library catalog records on 2026-10-07:
 
 `scripts/shelf.py` writes `assets/shelf/<key>.svg` for each book and `assets/shelf/end.svg`. Widths are
 in thousandths of the README column and the README sets `width="<units / 10>%"` (GitHub keeps percent
-widths), so every file renders at the same height and the row scales as one piece: 268 px tall in the
-838 px desktop column, 99 px on a 390 px phone, 76 px on a 320 px phone. The widths add up to 996, so
+widths), so every file renders at the same height and the row scales as one piece: 271 px tall in the
+846 px desktop column, 99 px on a 390 px phone, 76 px on a 320 px phone. The widths add up to 996, so
 rounding never pushes the end piece onto a second line.
 
 Each file is 320 units tall with the walnut plank across its bottom 14 units (top face `#a07a55`,
@@ -99,7 +99,9 @@ two fonts the generator reads are kept.
 
 ## Verification
 
-GitHub's renderer (`gh api markdown`, mode markdown) with github-markdown-css in Playwright at the
-profile's column widths (838, 308 and 238 px) in light and dark: one shelf row, no broken images, equal
-pill widths, every catalog line on one line at 838. Then the branch on github.com, and its rendered
-README inside the real profile layout.
+GitHub's renderer (`gh api markdown`, mode markdown) with github-markdown-css in Playwright at 838, 308
+and 238 px in light and dark: one shelf row, no broken images, equal pill widths, every catalog line on
+one line at 838. Then the branch on github.com, its rendered README put into the real profile page at
+1280, 390 and 320 px viewports in light and dark. There the column measured 846, 308 and 238 px (846 at
+every desktop width from 1280 up, 578 at 1012), with one shelf row 271, 99 and 76 px tall and no broken
+images.
