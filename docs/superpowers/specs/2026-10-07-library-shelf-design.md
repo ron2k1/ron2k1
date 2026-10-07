@@ -86,9 +86,12 @@ the catalog under it carries the names in full.
 
 `tests/test_shelf.py`: the committed files equal the generator's output byte for byte. Each file has
 the right viewBox, only the allowed elements, no text, style, script, image, font or outside URL, and
-only `url(#...)` references. Title ink stays inside the spine and between the bands, sticker ink inside
-the sticker, contrast floors as above, books in call-number order with the BAS Cutter, widths between
-990 and 997, and the plank edge to edge in every file.
+only `url(#...)` references, each one to an id in the same file, with no id left unused. Title ink stays
+inside the spine and clear of the bands `render()` draws (read from `bands()`, so moving a band onto a
+title fails), sticker ink inside the sticker, each lying title inside its cover between the foil rules,
+one glyph drawn for every letter on each spine, sticker and cover, contrast floors as above, books in
+call-number order with the BAS Cutter, widths between 990 and 997, and the plank edge to edge in every
+file.
 
 `tests/test_readme.py`: every local image exists. The shelf line equals `python scripts/shelf.py
 --readme` and carries the generator's widths. The catalog lists the books in shelf order with matching
